@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { useCountStore } from '@/store/modules/count';
+  const { count, doubleCount, increment } = useCountStore();
 
-defineProps<{ msg: {
-  type: string,
-  default: "123"
-} }>()
-
-const count = ref(0)
+  // defineProps<{ msg: string }>();
+  withDefaults(defineProps<{ msg: string }>(), {
+    msg: '123',
+  });
 </script>
 
 <template>
@@ -22,14 +21,16 @@ const count = ref(0)
   <p>See <code>README.md</code> for more information.</p>
 
   <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Docs
-    </a>
+    <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
   </p>
 
-  <button type="button" @click="count++">count is: {{ count }}</button>
+  <a-space :size="8">
+    {{ doubleCount }}
+    <button type="button" @click="increment()">count is: {{ count }}</button>
+    <a-button type="primary" @click="increment()">count is: {{ count }}</a-button>
+  </a-space>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
@@ -37,19 +38,19 @@ const count = ref(0)
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
+  a {
+    color: #42b983;
+  }
 
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
+  label {
+    margin: 0 0.5em;
+    font-weight: bold;
+  }
 
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
+  code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #304455;
+  }
 </style>

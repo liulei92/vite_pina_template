@@ -1,0 +1,192 @@
+%hover-opacity6 {
+  &:hover {
+    filter: alpha(opacity=60); /* IE */
+    -moz-opacity: 0.6; /* 老版Mozilla */
+    -khtml-opacity: 0.6; /* 老版Safari */
+    opacity: 0.6; /* 支持opacity的浏览器*/
+  }
+}
+
+%hover-opacity7 {
+  &:hover {
+    filter: alpha(opacity=70); /* IE */
+    -moz-opacity: 0.7; /* 老版Mozilla */
+    -khtml-opacity: 0.7; /* 老版Safari */
+    opacity: 0.7; /* 支持opacity的浏览器*/
+  }
+}
+
+%box-style {
+  background: #ffffff;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+// 多行文本溢出显示省略号
+// -----------------------------------------------------------------------------
+@mixin line-clamp($line: 2, $line-height: 0.38rem) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  line-height: $line-height;
+  max-height: $line-height * $line + 0.2rem;
+}
+// 单行文本溢出显示省略号
+// -----------------------------------------------------------------------------
+@mixin text-overflow($width: 100%, $display: block, $align: justify) {
+  width: $width;
+  display: $display;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: $align;
+}
+// 一像素边框
+// -----------------------------------------------------------------------------
+@mixin top-line($color, $zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: $zindex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid $color;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+@mixin bottom-line($color, $zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: $zindex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid $color;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+@mixin left-line($color, $zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: $zindex;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-left: 1px solid $color;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+@mixin right-line($color, $zindex: 0) {
+  content: '';
+  position: absolute;
+  z-index: $zindex;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border-right: 1px solid $color;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+@mixin flex-center($direction: row, $inline: flex) {
+  display: $inline;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+// icomoon.scss 表格操作类型按钮
+@mixin operateIcons(
+  $color: #6c7079,
+  $hover-color: $primary-color,
+  $active-color: #336bed,
+  $fz: 24px
+) {
+  color: $color;
+  font-size: $fz;
+  &:not(.disabled) {
+    cursor: pointer;
+    &:hover {
+      color: $hover-color;
+    }
+    &:active {
+      color: $active-color;
+    }
+  }
+  &.disabled {
+    cursor: not-allowed;
+    color: rgba($color, 0.7);
+  }
+}
+
+// disabled 状态 color 调整
+@mixin disabledColor($color: $primary-color, $normal: false) {
+  @if ($normal) {
+    color: $color;
+    border-color: $color;
+  }
+  &[disabled],
+  &.disabled {
+    background-color: #fff;
+    color: rgba($color, 0.3);
+    border-color: rgba($color, 0.3);
+  }
+}
+
+@mixin button-disabled($color, $background, $border) {
+  // &-disabled,
+  // &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      // .button-color(@color; @background; @border);
+      color: $color;
+      background-color: $background;
+      border-color: $border;
+      text-shadow: none;
+      box-shadow: none;
+      .icomoon {
+        color: $color !important;
+      }
+    }
+  }
+}
+
+// mixin: 处理form-wrapper 和 modal-form 中关于可增加数组的配置的css
+@mixin form-item-input-list($form: form-wrapper) {
+  :deep(.ant-form-item-control-input-content) {
+    @if $form == form-wrapper {
+      // max-width: 360px;
+      display: inline-flex;
+      align-items: center;
+      .ant-input {
+        max-width: 360px;
+      }
+    } @else if $form == modal-form {
+      max-width: 360px;
+      display: inline-flex;
+      align-items: center;
+      .ant-input {
+        max-width: 320px;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/*
+ * @Description: constant.ts
+ * @Date: 2022-03-16 10:57:03
+ * @Author: LeiLiu
+ */
+export const API_PREFIX = '/api'; // prefix
+
+// serve
+export const API_BASE_URL = '/api';
+export const API_TARGET_URL = 'http://localhost:3000';
+
+// mock
+export const MOCK_API_BASE_URL = '/mock/api';
+export const MOCK_API_TARGET_URL = 'http://localhost:3000';
+
+export const APP_MODEL = 'XXXX';
+
+export const ANALY = true; // 分析
+
+export const FIT = '12'; // 代码适配 1 是否开启legacy 2 是否开启gzip

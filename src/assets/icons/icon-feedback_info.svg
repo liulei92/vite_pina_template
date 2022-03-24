@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="更多功能" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="更多功能/网络拓展-mesh管理-未找到节点" transform="translate(-600.000000, -244.000000)">
+            <g id="新增mesh节点" transform="translate(280.000000, 132.000000)">
+                <g id="-mockplus-" transform="translate(320.000000, 112.000000)">
+                    <g id="常用/反馈/MD/Warning备份">
+                        <circle id="Oval" fill="#56C6F0" cx="40" cy="40" r="40"></circle>
+                        <path d="M40,25.2564103 C37.2385763,25.2564103 35,22.9604346 35,20.1282051 C35,17.2959756 37.2385763,15 40,15 C42.7614237,15 45,17.2959756 45,20.1282051 C45,22.9604346 42.7614237,25.2564103 40,25.2564103 Z M40,34.2307692 C42.0710678,34.2307692 43.75,35.952751 43.75,38.0769231 L43.75,61.1538462 C43.75,63.2780183 42.0710678,65 40,65 C37.9289322,65 36.25,63.2780183 36.25,61.1538462 L36.25,38.0769231 C36.25,35.952751 37.9289322,34.2307692 40,34.2307692 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
