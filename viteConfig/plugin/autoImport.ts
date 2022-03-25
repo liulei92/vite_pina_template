@@ -8,5 +8,5 @@ import AutoImport from 'unplugin-auto-import/vite';
 export const configAutoImportDeps = () =>
   AutoImport({
     imports: ['vue', 'vue-router'],
-    dts: 'src/auto-imports.d.ts'
+    dts: 'src/auto-imports.d.ts',
   });

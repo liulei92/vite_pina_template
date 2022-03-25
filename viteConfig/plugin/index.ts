@@ -11,6 +11,7 @@ import { configAutoRegistryComponents } from './component';
 import { configAutoImportDeps } from './autoImport';
 import { configStyleImportPlugin } from './styleImport';
 import { configSvgIconsPlugin } from './svgIcons';
+import { configMockPlugin } from './mock';
 import { configLegacyPlugin } from './legacy';
 import { configCompressPlugin } from './compress';
 import { configVisualizerPlugin } from './analysis';
@@ -27,6 +28,7 @@ export function createVitePlugins(command: 'build' | 'serve') {
     configAutoImportDeps(), // 自动按需引入依赖
     configStyleImportPlugin(), // 按需加载
     configSvgIconsPlugin(), // 注入icons
+    configMockPlugin(),
     // 自动按需引入依赖
     // lodash-es 按需引入
   ];

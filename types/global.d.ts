@@ -52,3 +52,9 @@ declare type IntervalHandle = ReturnType<typeof setInterval>;
 declare interface ChangeEvent extends Event {
   target: HTMLInputElement;
 }
+
+declare interface ResData<T> {
+  code: number;
+  message: string;
+  result: T;
+}

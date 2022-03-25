@@ -10,7 +10,7 @@ const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'; // node 环境
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   // 环境变量
-  const { VITE_BASE_URL, VITE_PORT = 3000, VITE_DROP_CONSOLE } = loadEnv(mode, process.cwd()); // process.cwd() root
+  const { VITE_BASE_URL, VITE_PORT, VITE_DROP_CONSOLE } = loadEnv(mode, process.cwd()); // process.cwd() root
 
   return {
     base: VITE_BASE_URL, // 开发或生产环境服务的公共基础路径
