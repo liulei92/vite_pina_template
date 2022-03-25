@@ -14,3 +14,21 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 - [https://www.jianshu.com/p/3526548c1169](https://www.jianshu.com/p/3526548c1169)
 - [https://segmentfault.com/a/1190000040368602](https://segmentfault.com/a/1190000040368602)
+
+## Plans
+
+### 0325
+
+准备 vite_pinia_template
+- [x] ~~优化vite.config.ts~~
+  - plugin: analysis, autoImport, compenent, compress, html, legacy, styleImport, scgIcons
+  - proxy, rollupConfig, themeConfig
+- [x] ~~增加 store(pinia) 和 router~~
+
+
+### 0326
+- [x] ~~添加基础utils库~~
+- [x] ~~添加mock数据plugin~~
+
+- [ ] todo i18n
+- [ ] todo formItems components
