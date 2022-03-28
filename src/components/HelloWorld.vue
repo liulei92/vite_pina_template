@@ -9,7 +9,8 @@
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>{{ $t('Hello_Vue') }}</h1>
+  <h3>props: {{ msg }}</h3>
 
   <p>
     Recommended IDE setup:

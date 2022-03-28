@@ -41,10 +41,13 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     const res = response.data as ResData<any>; // 可指定 type
-
-    // 根据res 去执行
-
-    return res;
+    const { code, message, result } = res;
+    if (![0, 200].includes(code)) {
+      // todo 分类 code
+      console.log(message);
+      return Promise.reject(message);
+    }
+    return result;
   },
   (error) => {
     return Promise.reject(error);

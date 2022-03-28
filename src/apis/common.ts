@@ -25,7 +25,7 @@ interface PageResult {
 }
 
 const page_one_list = async (params: PageReqParams) =>
-  get<PageResult>({ url: URL.page_one_list, params });
+  get<{ total: number; list: PageResult[] }>({ url: URL.page_one_list, params });
 
 export { page_one_list };
 export type { PageReqParams, PageResult };

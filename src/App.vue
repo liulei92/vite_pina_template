@@ -1,13 +1,32 @@
 <script setup lang="ts">
   // This starter template is using Vue 3 <script setup> SFCs
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-  import HelloWorld from './components/HelloWorld.vue';
+  // import zhCN from 'ant-design-vue/es/locale/zh_CN';
+  // import enUS from 'ant-design-vue/es/locale/en_US';
+
+  import { useLanguage } from '@/hooks/useLanguage';
+
+  const { antConfigLocale } = useLanguage();
+
+  const getPopupContainer = (node?: HTMLElement) => {
+    // 父级 node 会出现意外的问题
+    if (node && node.classList.contains('ant-select-selector')) {
+      return (node?.parentNode || document.body) as HTMLElement;
+    }
+    return document.body;
+  };
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <router-view />
+  <a-config-provider
+    :autoInsertSpaceInButton="false"
+    :getPopupContainer="getPopupContainer"
+    :locale="antConfigLocale"
+  >
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="u" />
+    <router-view />
+  </a-config-provider>
 </template>
 
 <style>
