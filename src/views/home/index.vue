@@ -1,11 +1,12 @@
 <template>
   <div>
     <svg-icon icon-class="feedback_time" />
-    <lang-select />
+    <!-- <lang-select /> -->
+    <LangSelectTsx />
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="Home">
   import { hotMusic1 } from '@/apis/free';
   import { useCommonStore } from '@/store/modules/common';
 

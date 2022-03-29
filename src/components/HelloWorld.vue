@@ -1,11 +1,42 @@
-<script setup lang="ts">
+<script setup lang="ts" name="HelloWorld">
+  import { PropType } from 'vue';
   import { useCountStore } from '@/store/modules/count';
   const { count, doubleCount, increment } = useCountStore();
 
+  // 纯 ts
   // defineProps<{ msg: string }>();
-  withDefaults(defineProps<{ msg: string }>(), {
-    msg: '123',
+  // withDefaults(defineProps<{ msg: string }>(), {
+  //   msg: '123',
+  // });
+
+  // 使用 PropType + 默认值
+  const props = defineProps({
+    msg: {
+      type: String as PropType<string>,
+      default: '123',
+    },
   });
+  console.log(props);
+
+  // message.error('123123');
+
+  // notification.success({
+  //   message: 'Notification Title',
+  //   description:
+  //     'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+  // });
+
+  // Modal.confirm({
+  //   title: 'Do you Want to delete these items?',
+  //   content: h('div', { style: 'color:red;' }, 'Some descriptions'),
+  //   onOk() {
+  //     console.log('OK');
+  //   },
+  //   onCancel() {
+  //     console.log('Cancel');
+  //   },
+  //   class: 'test',
+  // });
 </script>
 
 <template>

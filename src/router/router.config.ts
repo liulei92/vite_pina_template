@@ -3,14 +3,19 @@
  * @Date: 2022-03-24 15:45:08
  * @Author: LeiLiu
  */
+import { RouterView } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-import BlankLayout from '@/layouts/BlankLayout.vue';
+// import BlankLayout from '@/layouts/BlankLayout.vue';
+
+const BlankLayout = () => {
+  return h(RouterView);
+};
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/app',
     name: 'app',
-    component: BlankLayout,
+    component: markRaw(BlankLayout),
     redirect: '/app/home',
     meta: { title: 'xxxx' },
     children: [
@@ -45,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/:pathMatch(.*)',
+    path: '/:pathMatch(.*)', // 未知路由匹配
     redirect: '/app',
   },
 ];

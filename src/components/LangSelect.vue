@@ -5,7 +5,7 @@
   </a-select>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="LangSelect">
   import { useCommonStore } from '@/store/modules/common';
 
   const { language } = useCommonStore();

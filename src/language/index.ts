@@ -38,8 +38,8 @@ const $vt = (key: string, value = {}) => {
 };
 
 // 组件方式, 只能给接收vnode的参数用
-export const $fm = (tKey: string, tValues?: object) => {
+const $fm = (tKey: string, tValues?: object) => {
   return h(TrComponent, { tKey, tValues });
 };
 
-export { i18n as default, $vt };
+export { i18n as default, $vt, $fm };

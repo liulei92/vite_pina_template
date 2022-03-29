@@ -7,18 +7,18 @@
  */
 
 import { router } from '.';
-import { useCountStoreWithOut } from '@/store/modules/count';
 
 // const whiteList = ['/login']; // no redirect whitelist
 
 router.beforeEach(async (to: any, _, next) => {
   next();
+  // 可在此进行 动态路由添加 和 路由鉴权处理
+
+  // 或者可以再main.ts 中先进行router.addRoute后，再createApp(App).use(router)
 });
 
 router.afterEach((to, from, failure) => {
   console.log(to);
-  const countStore = useCountStoreWithOut();
-  console.log(countStore.count);
 });
 
 router.onError((error) => {

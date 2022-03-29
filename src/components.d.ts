@@ -6,11 +6,12 @@ declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
-    ASelect: typeof import('ant-design-vue/es')['Select']
-    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
+    APopover: typeof import('ant-design-vue/es')['Popover']
     ASpace: typeof import('ant-design-vue/es')['Space']
+    ColorPicker: typeof import('./components/ColorPicker.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     LangSelect: typeof import('./components/LangSelect.vue')['default']
+    LangSelectTsx: typeof import('./components/LangSelectTsx.tsx')['default']
     SvgIcon: typeof import('./components/SvgIcon/index.vue')['default']
   }
 }

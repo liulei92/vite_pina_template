@@ -51,7 +51,7 @@ export const commonStore = defineStore('common', () => {
       get: () => {
         return language.value;
       },
-      set: (val: string | null) => {
+      set: (val: string) => {
         language.value = val;
       },
     }),

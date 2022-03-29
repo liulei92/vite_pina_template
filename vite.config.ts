@@ -7,6 +7,7 @@ import proxy from './viteConfig/proxy';
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'; // node 环境下获取 传参
 
+// https://zhuanlan.zhihu.com/p/480011754 Vue3 开发推荐插件
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   // 环境变量
@@ -28,6 +29,8 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
         },
       ],
+      // 忽略.vue后缀
+      // extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
     plugins: createVitePlugins(command),
     css: {

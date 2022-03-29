@@ -15,8 +15,8 @@ declare global {
       };
       pageOneTotal: number;
       pageOneList: PageResult[];
-      language: string;
-      getUserName: string;
+      language?: string;
+      getUserName?: string;
     }
 
     export interface CountTypes {
