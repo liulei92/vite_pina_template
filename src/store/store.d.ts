@@ -9,14 +9,16 @@ import { PageResult } from '@/apis/common';
 declare global {
   declare namespace StoreTypes {
     export interface CommonTypes {
-      token: string;
-      userInfo: {
-        userName?: string;
-      };
       pageOneTotal: number;
       pageOneList: PageResult[];
       language?: string;
-      getUserName?: string;
+      userInfo: {
+        userId?: string;
+        username?: string;
+        token?: string;
+        [key: string]: any;
+      } | null;
+      token?: string;
     }
 
     export interface CountTypes {

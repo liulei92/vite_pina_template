@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/app/home',
-        component: () => import('@/views/home/index.vue'),
+        component: () => import('@/views/app/home/index.vue'),
         name: 'home',
         meta: {
           title: '首页',
@@ -31,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
       },
       {
         path: '/app/about',
-        component: () => import('@/views/about/index.vue'),
+        component: () => import('@/views/app/about/index.vue'),
         name: 'about',
         meta: {
           title: '关于',
@@ -40,6 +40,12 @@ export const routes: RouteRecordRaw[] = [
         },
       },
     ],
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index.vue'),
+    meta: { title: 'Login' },
   },
   {
     path: '/',

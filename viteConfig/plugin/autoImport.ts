@@ -38,8 +38,14 @@ export const configAutoImportDeps = () =>
       'pinia',
       'vue-i18n',
       {
-        '@vueuse/core': [],
-        'lodash-es': ['deepMerge'],
+        '@vueuse/core': [
+          'useDebounceFn',
+          'useEventListener',
+          'useResizeObserver',
+          'useIntervalFn',
+          'useTimeoutFn',
+        ],
+        'lodash-es': ['deepMerge', 'cloneDeep'],
         'ant-design-vue': ['Modal', 'message', 'notification'],
       },
     ],

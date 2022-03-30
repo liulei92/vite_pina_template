@@ -11,14 +11,22 @@ enum URL {
 }
 
 interface LoginReqParams {
-  mobile: string;
+  username: string;
   password: string;
 }
 
 interface LoginResult {
-  login_status: number;
-  st: string;
+  userId: string;
+  username: string;
+  password: string;
+  nickname: string;
   token: string;
+  auths: never[];
+  modules: string[];
+  is_admin: number;
+  role_name: string;
+  mobile: number;
+  first_login: string;
 }
 
 const login = async (data: LoginReqParams) => post<LoginResult>({ url: URL.login, data });

@@ -738,7 +738,7 @@ export function useCommonStore() {
 }
 
 // Need to be used outside the setup
-export function useComeStoreWithOut() {
+export function useCommonStoreWithOut() {
   return commonStore(store);
 }
 
@@ -747,10 +747,10 @@ export function useComeStoreWithOut() {
 ## 7. Language + I18n
 ```shell
 import { createI18n, I18nOptions } from 'vue-i18n';
-import { useComeStoreWithOut } from '@/store/modules/common';
+import { useCommonStoreWithOut } from '@/store/modules/common';
 import TrComponent from './TrComponent.vue';
 
-const commonStore = useComeStoreWithOut();
+const commonStore = useCommonStoreWithOut();
 
 const options: I18nOptions = {
   // legacy: false, // 使用复合API，你必须设置“false”，但全局app.config.globalProperties.$t 则无法使用
@@ -1032,3 +1032,5 @@ router.onError((error) => {
 ### 0329
 - [x] ~~优化plugins（autoImport 和 components）的使用~~
 - [x] ~~添加vite-plugin-vue-setup-extend vite-plugin-optimize-persist vite-plugin-package-config的使用~~
+
+https://github.com/vbenjs/vue-vben-admin

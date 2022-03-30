@@ -30,4 +30,9 @@ export default {
   Logout: 'Logout',
   Welcome: 'Welcome {d}',
   Hello_Vue: 'Hello Vue 3 + TypeScript + Vite',
+  Login_Motto: 'Whatever is worth doing, just do it well.',
+  Mobile: 'Mobile',
+  Qrcode: 'Qrcode',
+  Signup: 'Sign Up',
+  Login_With: 'Login with',
 };

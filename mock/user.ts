@@ -11,27 +11,27 @@ const UserListMock = [
     userId: '1',
     username: 'admin',
     nickname: 'manager',
-    password: '123456',
+    password: 'admin123',
     token: 'fakeToken1',
     auths: [],
     modules: [],
     is_admin: 1,
-    role_name: '管理员角色',
+    role_name: '管理员',
     mobile: 13000000000,
-    last_login: '2021-11-11 12:00',
+    first_login: '2021-11-11 12:00',
   },
   {
     userId: '2',
-    username: 'test',
+    username: 'guest',
     password: '123456',
-    nickname: 'tester',
+    nickname: 'guest',
     token: 'fakeToken2',
     auths: [],
     modules: ['home', 'website'],
     is_admin: 0,
-    role_name: '普通用户角色',
+    role_name: '游客',
     mobile: 18000000000,
-    last_login: '2021-11-11 12:12',
+    first_login: '2021-11-11 12:12',
   },
 ];
 
@@ -49,6 +49,7 @@ export default [
       if (!checkUser) {
         return resultError('Incorrect account or password！');
       }
+      checkUser.token = Math.random().toString(36).slice(2);
       return resultSuccess(checkUser);
     },
   },

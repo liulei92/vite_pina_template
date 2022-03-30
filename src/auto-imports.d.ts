@@ -2,6 +2,7 @@
 // We suggest you to commit this file into source control
 declare global {
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
@@ -61,10 +62,15 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
+  const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useI18n: typeof import('vue-i18n')['useI18n']
+  const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
+  const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
+  const useTimeoutFn: typeof import('@vueuse/core')['useTimeoutFn']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
 }

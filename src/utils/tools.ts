@@ -7,6 +7,15 @@ import dayjs from 'dayjs';
 import type { App, Plugin } from 'vue';
 
 /**
+ * 获取变量的类型
+ * @param {any} v
+ * @returns {string} string number undefined null object array number function
+ */
+export function getType(v: any) {
+  return Object.prototype.toString.call(v).slice(8, -1).toLowerCase();
+}
+
+/**
  * 获取url参数
  * @param param string 参数名
  * @returns
@@ -217,4 +226,151 @@ export const withInstall = <T>(component: T, alias?: string) => {
     }
   };
   return component as T & Plugin;
+};
+
+/**
+ * 日期处理
+ */
+export const dateJS = {
+  /**
+   * 检查日期是否有效
+   * @param {string|number} val "December 17, 1995 03:24:00"
+   * @returns {boolean}
+   */
+  isValid: (val: string | number) => {
+    return !Number.isNaN(new Date(val).valueOf());
+  },
+  /**
+   * 计算两个日期之间的间隔
+   * @param {Date} date1 new Date("2021-11-3")
+   * @param {Date} date2 new Date("2022-2-1")
+   * @returns {number} 90
+   */
+  dayDif: (date1: Date, date2: Date) => {
+    return Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000);
+  },
+  /**
+   * 查找日期位于一年中的第几天
+   * @param {Date} date
+   * @returns {number}
+   */
+  dayOfYear: (date: Date) => {
+    return Math.floor(
+      (date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24,
+    );
+  },
+  /**
+   * 时间格式化 hour:minutes:seconds
+   * @param {Date} date
+   * @returns {string}
+   */
+  timeFromDate: (date: Date) => {
+    return date.toTimeString().slice(0, 8);
+  },
+};
+
+/**
+ * 字符串处理
+ */
+export const stringJS = {
+  /**
+   * 字符串首字母大写
+   * @param {string} str
+   * @returns {string}
+   */
+  capitalize: (str: string) => str.charAt(0).toUpperCase() + str.slice(1),
+  /**
+   * 翻转字符串
+   * @param {string} str
+   * @returns {string}
+   */
+  reverse: (str: string) => str.split('').reverse().join(''),
+  /**
+   * 随机字符串
+   * @returns {string}
+   */
+  random: () => Math.random().toString(36).slice(2),
+  /**
+   * 截断字符串
+   * @param {string} str
+   * @param {number} length
+   * @returns {string}
+   */
+  truncate: (str: string, length: number) =>
+    str.length < length ? str : `${str.slice(0, length - 3)}...`,
+  /**
+   * 去除字符串中的HTML
+   * @param {string} html
+   * @returns {string}
+   */
+  stripHtml: (html: string) =>
+    new DOMParser().parseFromString(html, 'text/html').body.textContent || '',
+};
+
+/**
+ * 数组处理
+ */
+export const arrayJS = {
+  /**
+   * 从数组中移除重复项
+   * @param {Array} arr
+   * @returns {Array}
+   */
+  removeDuplicates: (arr: (string | number | boolean)[]) => [...new Set(arr)],
+  /* todo */
+};
+
+/**
+ * 数字处理
+ */
+export const numberJS = {
+  /**
+   * 判断一个数是奇数还是偶数
+   * @param {number} num
+   * @returns {boolean}
+   */
+  isEven: (num: number) => num % 2 === 0,
+  /**
+   * 获得一组数的平均值
+   * @param {number[]} args
+   * @returns {number}
+   */
+  average: (args: number[]) => args.reduce((a, b) => a + b) / args.length,
+  /**
+   * 获取两个整数之间的随机整数
+   * @param {number} min
+   * @param {number} max
+   * @returns {number}
+   */
+  random: (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min),
+  /**
+   * 指定位数四舍五入
+   * @param {number} n
+   * @param {number} d
+   * @returns
+   */
+  round: (n: number, d: number) => Number(Math.round(Number(n + 'e' + d)) + 'e-' + d),
+};
+
+/**
+ * 颜色操作
+ */
+export const colorJS = {
+  /**
+   * 将RGB转化为十六机制 255, 255, 255 => #ffffff
+   * @param {number} r
+   * @param {number} g
+   * @param {number} b
+   * @returns {0x}
+   */
+  rgbToHex: (r: number, g: number, b: number) =>
+    '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1),
+  /**
+   * 获取随机十六进制颜色
+   * @returns {0x}
+   */
+  randomHex: () =>
+    `#${Math.floor(Math.random() * 0xffffff)
+      .toString(16)
+      .padEnd(6, '0')}`,
 };

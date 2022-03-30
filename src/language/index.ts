@@ -4,12 +4,12 @@
  * @Author: LeiLiu
  */
 import { createI18n, I18nOptions } from 'vue-i18n';
-import { useComeStoreWithOut } from '@/store/modules/common';
+import { useCommonStoreWithOut } from '@/store/modules/common';
 import enWords from './en';
 import zhWords from './zh';
 import TrComponent from './TrComponent.vue';
 
-const commonStore = useComeStoreWithOut();
+const commonStore = useCommonStoreWithOut();
 
 const options: I18nOptions = {
   // legacy: false, // 使用复合API，你必须设置“false”，但全局app.config.globalProperties.$t 则无法使用

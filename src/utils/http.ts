@@ -44,7 +44,6 @@ instance.interceptors.response.use(
     const { code, message, result } = res;
     if (![0, 200].includes(code)) {
       // todo 分类 code
-      console.log(message);
       return Promise.reject(message);
     }
     return result;

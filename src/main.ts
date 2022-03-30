@@ -5,8 +5,10 @@ import App from './App.vue';
 import { store } from './store';
 import i18n from './language';
 import { router } from './router';
-import globalProperties from './utils/globalProperties';
 import './router/router.guards';
+import globalProperties from './utils/globalProperties';
+import directives from './utils/directives';
+import './assets/scss/index.scss';
 
 // 全局配置
 message.config({
@@ -18,7 +20,7 @@ message.config({
 
 const app = createApp(App);
 
-app.use(store).use(i18n).use(router).use(globalProperties);
+app.use(store).use(i18n).use(router).use(globalProperties).use(directives);
 
 router.isReady().then(() => app.mount('#app'));
 

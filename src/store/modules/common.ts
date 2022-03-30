@@ -42,9 +42,8 @@ export function getLocale(): string {
 
 export const commonStore = defineStore('common', () => {
   const language = useStorage('LANGUAGE', getLocale());
+  const userInfo = useStorage('USER', {});
   const state: StoreTypes.CommonTypes = reactive({
-    token: '',
-    userInfo: {},
     pageOneTotal: 0,
     pageOneList: [],
     language: computed({
@@ -55,20 +54,28 @@ export const commonStore = defineStore('common', () => {
         language.value = val;
       },
     }),
-    getUserName: computed(() => state.userInfo?.userName),
+    userInfo: computed({
+      get: () => {
+        return userInfo.value;
+      },
+      set: (val: StoreTypes.CommonTypes['userInfo']) => {
+        userInfo.value = val;
+      },
+    }),
+    token: computed(() => state.userInfo?.token),
   });
 
   function setLanguage(language: string) {
     state.language = language;
   }
 
-  function setUserInfo(info) {
+  function setUserInfo(info: StoreTypes.CommonTypes['userInfo']) {
     state.userInfo = info;
   }
 
   async function fetchPageOne(params: PageReqParams) {
     const res = await page_one_list(params);
-    console.log(res);
+
     if (res) {
       state.pageOneTotal = res.total;
       state.pageOneList = res.list;
@@ -96,6 +103,6 @@ export function useCommonStore() {
 }
 
 // Need to be used outside the setup
-export function useComeStoreWithOut() {
+export function useCommonStoreWithOut() {
   return commonStore(store);
 }

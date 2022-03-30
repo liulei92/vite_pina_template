@@ -30,4 +30,9 @@ export default {
   Logout: '登出',
   Welcome: '欢迎 {d}',
   Hello_Vue: '欢迎 Vue 3 + TypeScript + Vite',
+  Login_Motto: '任何值得做的，就把它做好。',
+  Mobile: '手机登录',
+  Qrcode: '二维码登录',
+  Signup: '注册',
+  Login_With: '其他登录方式',
 };
