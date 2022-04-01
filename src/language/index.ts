@@ -28,8 +28,9 @@ const options: I18nOptions = {
 
 const i18n = createI18n(options);
 
-const $vt = (key: string, value = {}) => {
+const $vt = (key?: string, value = {}) => {
   try {
+    if (typeof key !== 'string') return undefined;
     if (i18n.global.te(key)) return i18n.global.t(key, value);
     else return key;
   } catch (error) {

@@ -12,7 +12,7 @@ export const configAutoRegistryComponents = () => {
     dirs: ['src/components'],
 
     // valid file extensions for components.
-    extensions: ['vue', 'tsx'],
+    extensions: ['vue'],
     // search for subdirectories
     deep: true,
     // resolvers for custom components
@@ -36,7 +36,7 @@ export const configAutoRegistryComponents = () => {
     directives: true,
 
     // filters for transforming targets
-    include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
+    include: [/\.vue$/, /\.vue\?vue/],
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
   });
 };

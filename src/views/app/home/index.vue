@@ -2,19 +2,25 @@
   <div>
     <svg-icon icon-class="feedback_time" />
     <lang-select class="fixed top-10px right-10px" />
-
+    {{ model }}
     <a-form ref="formRef" :model="model" :rules="rules" v-bind="formItemLayout">
-      <form-item label="Plain Text">
+      <form-item label="Plain Text" tip="Plain Text">
         <span class="ant-form-text">China</span>
       </form-item>
-      <form-item
+      <input-item
         name="input"
         label="Input"
         tip="Input"
         :rules="[{ required: true, message: 'Please select your country!' }]"
+        v-model:value="model.input"
       >
-        <a-input v-model:value="model.input" />
-      </form-item>
+        <template #suffix>
+          <a-tooltip title="Extra information">
+            <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+          </a-tooltip>
+        </template>
+        <!-- <a-input v-model:value="model.input" /> -->
+      </input-item>
       <a-form-item
         name="select"
         label="Select"
@@ -116,6 +122,7 @@
 
 <script lang="ts" setup name="Home">
   import type { FormInstance } from 'ant-design-vue';
+  import { InfoCircleOutlined } from '@ant-design/icons-vue';
   import { hotMusic1 } from '@/apis/free';
 
   hotMusic1({ format: 'json' });

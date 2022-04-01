@@ -1,17 +1,17 @@
 <template>
   <a-form-item v-bind="{ ...otherProps }">
     <template #label>
-      <slot v-if="slots.label" name="label">{{ props?.label }}</slot>
-      <template v-if="props?.label">
-        {{ props?.label }}
-        <a-tooltip v-if="props.tip" :destroyTooltipOnHide="true" :title="$vt(props.tip)">
+      <slot v-if="$slots.label" name="label">{{ label }}</slot>
+      <template v-if="label">
+        {{ label }}
+        <a-tooltip v-if="tip" :destroyTooltipOnHide="true" :title="$vt(tip)">
           <QuestionCircleFilled style="color: #6c6c6c" />
         </a-tooltip>
       </template>
     </template>
     <slot name="default"></slot>
-    <template #extra>
-      <slot name="extra">{{ props?.extra }}</slot>
+    <template v-if="$slots.extra" #extra>
+      <slot name="extra">{{ extra }}</slot>
     </template>
   </a-form-item>
 </template>
@@ -19,13 +19,11 @@
 <script lang="ts" setup name="FormItem">
   import { Form } from 'ant-design-vue';
   import { QuestionCircleFilled } from '@ant-design/icons-vue';
-  import { BasicItemProps } from './props';
+  import { FormItemProps } from './props';
 
-  const props = defineProps(BasicItemProps);
+  const props = defineProps(FormItemProps);
 
   const otherProps = computed(() => omit(props, ['label', 'extra', 'tip']));
-
-  const slots = useSlots();
 
   const formItemContext = Form.useInjectFormItemContext();
 
