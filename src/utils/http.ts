@@ -4,10 +4,11 @@
  * @Author: LeiLiu
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { API_PREFIX } from '../../viteConfig/constant';
+import { API_PREFIX, MOCK_API_PREFIX, LOCAL_MOCK } from '../../viteConfig/constant';
 
 // baseURL
-const BASE_URL = import.meta.env.MODE === 'development' ? API_PREFIX : '';
+const BASE_URL =
+  import.meta.env.MODE === 'development' ? (LOCAL_MOCK ? MOCK_API_PREFIX : API_PREFIX) : '';
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -67,12 +68,24 @@ const _default = <T = any>(
   }
 };
 
-function get<T = any>(config: AxiosRequestConfig, options?: AxiosRequestConfig): Promise<T> {
-  return _default({ ...config, method: 'GET' }, options);
+function get<T = any>(
+  config: AxiosRequestConfig | string,
+  options?: AxiosRequestConfig,
+): Promise<T> {
+  return _default(
+    { ...(typeof config === 'string' ? { url: config } : config), method: 'GET' },
+    options,
+  );
 }
 
-function post<T = any>(config: AxiosRequestConfig, options?: AxiosRequestConfig): Promise<T> {
-  return _default({ ...config, method: 'POST' }, options);
+function post<T = any>(
+  config: AxiosRequestConfig | string,
+  options?: AxiosRequestConfig,
+): Promise<T> {
+  return _default(
+    { ...(typeof config === 'string' ? { url: config } : config), method: 'POST' },
+    options,
+  );
 }
 
 export { _default as default, get, post };

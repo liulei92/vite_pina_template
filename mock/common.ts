@@ -35,4 +35,16 @@ export default [
       };
     },
   },
+  {
+    url: '/v1/common/info',
+    method: 'get',
+    response: () => ({
+      code: 0,
+      result: {
+        prroductName: 'pinna',
+        developer: 'pinna',
+        email: 'liulei81405025@gmail.com',
+      },
+    }),
+  },
 ] as MockMethod[];

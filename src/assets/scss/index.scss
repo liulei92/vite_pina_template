@@ -32,12 +32,12 @@ a {
 .pointer {
   cursor: pointer;
 }
-.flex {
-  display: flex !important;
-}
-.iflex {
-  display: inline-flex !important;
-}
+// .flex {
+//   display: flex !important;
+// }
+// .iflex {
+//   display: inline-flex !important;
+// }
 .justify-center {
   justify-content: center;
 }
@@ -45,53 +45,14 @@ a {
   align-items: center;
 }
 .flex-center {
-  @extend .flex;
+  @apply flex;
   @extend .justify-center;
   @extend .align-center;
 }
 .iflex-center {
-  @extend .iflex;
+  @apply inline-flex;
   @extend .justify-center;
   @extend .align-center;
-}
-.w-full {
-  width: 100%;
-}
-.h-full {
-  height: 100%;
-}
-.white-color {
-  color: #FFFFFF;
-}
-
-$pxVars: (8,10,12,16,20,24,30,32,40,44,48);
-@each $item in $pxVars {
-  // $i: index($pxVars, $item); //获取下标
-  // @include icon-nav(map-get($item, key), map-get($item, value));
-  .pt#{$item} {
-    padding-top: #{$item}px;
-  }
-  .pb#{$item} {
-    padding-bottom: #{$item}px;
-  }
-  .pl#{$item} {
-    padding-left: #{$item}px;
-  }
-  .pr#{$item} {
-    padding-right: #{$item}px;
-  }
-  .mt#{$item} {
-    margin-top: #{$item}px;
-  }
-  .mr#{$item} {
-    margin-right: #{$item}px;
-  }
-  .mb#{$item} {
-    margin-bottom: #{$item}px;
-  }
-  .ml#{$item} {
-    margin-left: #{$item}px;
-  }
 }
 
 $fzVars: (12, 14, 16, 18, 20, 22, 24, 32);

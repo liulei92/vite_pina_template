@@ -7,14 +7,15 @@ import { get } from '@/utils/http';
 
 enum URL {
   page_one_list = '/v1/common/page_one/list',
+  info = '/v1/common/info',
 }
 
-interface PageReqParams {
+export interface PageReqParams {
   limit: number;
   page: number;
 }
 
-interface PageResult {
+export interface PageResult {
   id: number;
   url: string;
   ip: string;
@@ -24,8 +25,12 @@ interface PageResult {
   email: string;
 }
 
-const page_one_list = async (params: PageReqParams) =>
+export const page_one_list = async (params: PageReqParams) =>
   get<{ total: number; list: PageResult[] }>({ url: URL.page_one_list, params });
 
-export { page_one_list };
-export type { PageReqParams, PageResult };
+export interface InfoResult {
+  prroductName: string;
+  developer: string;
+  email: string;
+}
+export const info = async () => get<InfoResult>(URL.info);

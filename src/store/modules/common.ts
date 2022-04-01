@@ -6,7 +6,7 @@
 import { defineStore, storeToRefs } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { store } from '@/store';
-import { page_one_list, type PageReqParams } from '@/apis/common';
+import { page_one_list, info, type PageReqParams } from '@/apis/common';
 
 // export const commonStore = defineStore({
 //   id: 'common',
@@ -46,6 +46,7 @@ export const commonStore = defineStore('common', () => {
   const state: StoreTypes.CommonTypes = reactive({
     pageOneTotal: 0,
     pageOneList: [],
+    info: {},
     language: computed({
       get: () => {
         return language.value;
@@ -83,11 +84,21 @@ export const commonStore = defineStore('common', () => {
     return res;
   }
 
+  async function fetchInfo() {
+    const res = await info();
+
+    if (res) {
+      state.info = res;
+    }
+    return res;
+  }
+
   return {
     ...toRefs(state),
     setLanguage,
     setUserInfo,
     fetchPageOne,
+    fetchInfo,
   };
 });
 
@@ -99,6 +110,7 @@ export function useCommonStore() {
     setLanguage: store.setLanguage,
     setUserInfo: store.setUserInfo,
     fetchPageOne: store.fetchPageOne,
+    fetchInfo: store.fetchInfo,
   };
 }
 

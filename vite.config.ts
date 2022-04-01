@@ -1,9 +1,9 @@
 import { defineConfig, loadEnv, type UserConfig, type ConfigEnv } from 'vite';
 import { resolve } from 'path';
-import { configThemeConfig } from './viteConfig/themeConfig';
+import { configTheme } from './viteConfig/themeConfig';
 import { createVitePlugins } from './viteConfig/plugin';
 import { configManualChunk } from './viteConfig/rollupConfig';
-import proxy from './viteConfig/proxy';
+import { configProxy } from './viteConfig/proxy';
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'; // node 环境下获取 传参
 
@@ -42,7 +42,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           require('postcss-preset-env'),
         ],
       },
-      preprocessorOptions: configThemeConfig(),
+      preprocessorOptions: configTheme(),
     },
     // 定义全局常量替换方式
     define: {
@@ -58,7 +58,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       port: Number(VITE_PORT),
       open: true,
       https: protocol === 'https',
-      proxy,
+      proxy: configProxy(VITE_PORT),
     },
     // 依赖优化选项
     optimizeDeps: {

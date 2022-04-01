@@ -1,21 +1,21 @@
 <template>
-  <div class="login-page">
-    <lang-select />
-    <a-row class="container h-full">
+  <div class="login-page w-screen h-screen">
+    <lang-select class="fixed top-10px right-10px" />
+    <a-row class="container h-full mx-auto">
       <div class="flex w-full h-full">
-        <a-col :span="12" class="introduce-box">
-          <div class="logo mt20">
-            <img src="src/assets/svg/logo.svg" alt="logo" />
-            <span class="ml8 fz20 white-color">Pinna</span>
+        <a-col :span="12" class="introduce-box relative">
+          <div class="logo flex items-center h-60px mt-20px">
+            <img src="src/assets/svg/logo.svg" class="w-40px h-40px" alt="logo" />
+            <span class="ml-8px text-20px text-white">Pinna</span>
           </div>
-          <div class="info">
-            <img src="src/assets/svg/login-box-bg.svg" alt="login-box-bg" />
-            <div class="mt40 fz18 white-color">{{ $t('Login_Motto') }}</div>
+          <div class="info absolute top-1/2 transform -translate-y-1/2">
+            <img src="src/assets/svg/login-box-bg.svg" class="w-3/5" alt="login-box-bg" />
+            <div class="mt-40px text-20px text-white">{{ $t('Login_Motto') }}</div>
           </div>
         </a-col>
-        <a-col :span="12" class="form-box">
+        <a-col :span="12" class="form-box !flex items-center">
           <a-form
-            class="login-form enter-x"
+            class="login-form w-7/10 !mx-auto enter-x"
             ref="formRef"
             layout="vertical"
             :model="model"
@@ -25,7 +25,7 @@
             @validate="onValidate"
             @finishFailed="onFinishFailed"
           >
-            <h2 class="enter-x">{{ $t('Login') }}</h2>
+            <div class="text-24px mb-20px enter-x">{{ $t('Login') }}</div>
             <a-form-item name="username" label="用户名称" class="enter-x">
               <a-input v-model:value="model.username" size="large">
                 <template #prefix>
@@ -67,7 +67,7 @@
 
             <a-divider>{{ $t('Login_With') }}</a-divider>
 
-            <div class="flex login-ways">
+            <div class="login-ways flex justify-around">
               <GithubOutlined />
               <WechatOutlined />
               <AlipayOutlined />
@@ -168,8 +168,6 @@
 
 <style lang="scss" scoped>
   .login-page {
-    width: 100vw;
-    height: 100vh;
     &::before {
       position: absolute;
       top: 0;
@@ -183,56 +181,16 @@
       background-size: auto 100%;
       content: ' ';
     }
-
-    :deep(.lang-select) {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-    }
-    .container {
-      width: 1200px;
-      margin: 0 auto;
-      .introduce-box {
-        position: relative;
-        .logo {
-          height: 60px;
-          display: flex;
-          align-items: center;
-          img {
-            width: 40px;
-            height: 40px;
-          }
-          span {
-            color: white;
-          }
-        }
-        .info {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          img {
-            width: 60%;
-          }
-        }
+    .login-form {
+      :deep(.ant-divider-inner-text) {
+        font-size: 12px;
+        opacity: 0.73;
       }
-      .form-box {
-        display: flex;
-        align-items: center;
-        .login-form {
-          width: 70%;
-          margin: 0 auto;
-          :deep(.ant-divider-inner-text) {
-            font-size: 12px;
-            opacity: 0.73;
-          }
-          .login-ways {
-            justify-content: space-evenly;
-            .anticon {
-              font-size: 22px;
-              color: #888;
-              cursor: pointer;
-            }
-          }
+      .login-ways {
+        .anticon {
+          font-size: 22px;
+          color: #888;
+          cursor: pointer;
         }
       }
     }

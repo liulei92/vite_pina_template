@@ -4,7 +4,17 @@
   // import zhCN from 'ant-design-vue/es/locale/zh_CN';
   // import enUS from 'ant-design-vue/es/locale/en_US';
 
+  import { useCommonStore } from '@/store/modules/common';
   import { useLanguage } from '@/hooks/useLanguage';
+
+  const { fetchInfo } = useCommonStore();
+  fetchInfo()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   const { antConfigLocale } = useLanguage();
 

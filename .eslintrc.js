@@ -11,7 +11,7 @@ module.exports = defineConfig({
     node: true,
     es6: true,
   },
-  parser: 'vue-eslint-parser',
+  parser: 'vue-eslint-parser', // https://eslint.vuejs.org/user-guide/#usage
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
@@ -22,8 +22,8 @@ module.exports = defineConfig({
     },
   },
   extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended', // 来自 eslint-plugin-vue 搭配 vue-eslint-parser 使用
+    'plugin:@typescript-eslint/recommended', // 来自 @typescript-eslint/eslint-plugin
     'prettier',
     'plugin:prettier/recommended',
     // 'plugin:jest/recommended', eslint-plugin-jest jest

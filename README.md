@@ -316,14 +316,14 @@ css: {
       require('postcss-preset-env'),
     ],
   },
-  preprocessorOptions: configThemeConfig(),
+  preprocessorOptions: configTheme(),
 },
 ```
 <a name="ycCex"></a>
-#### 4.3.1 configThemeConfig
+#### 4.3.1 configTheme
 ```shell
 自定义主题支持和插入全局css变量
-export function configThemeConfig() {
+export function configTheme() {
   return {
     less: {
       modifyVars: {

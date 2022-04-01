@@ -45,7 +45,8 @@ export const configAutoImportDeps = () =>
           'useIntervalFn',
           'useTimeoutFn',
         ],
-        'lodash-es': ['deepMerge', 'cloneDeep'],
+        // https://www.lodashjs.com/docs/lodash.omitBy
+        'lodash-es': ['deepMerge', 'cloneDeep', 'omit', 'pick'],
         'ant-design-vue': ['Modal', 'message', 'notification'],
       },
     ],

@@ -6,6 +6,7 @@
 import type { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import windiCSS from 'vite-plugin-windicss';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
 import { configHtmlPlugin } from './html';
@@ -27,6 +28,7 @@ export function createVitePlugins(command: 'build' | 'serve') {
     vueJsx({
       // options are passed on to @vue/babel-plugin-jsx
     }),
+    windiCSS(),
 
     configHtmlPlugin(), // 注入环境变量到html模板中
     configAutoRegistryComponents(), // 自动按需引入组件

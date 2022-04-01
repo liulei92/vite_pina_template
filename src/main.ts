@@ -8,6 +8,8 @@ import { router } from './router';
 import './router/router.guards';
 import globalProperties from './utils/globalProperties';
 import directives from './utils/directives';
+
+import 'virtual:windi.css';
 import './assets/scss/index.scss';
 
 // 全局配置

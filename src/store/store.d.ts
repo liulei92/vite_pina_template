@@ -3,7 +3,7 @@
  * @Date: 2022-03-24 16:16:10
  * @Author: LeiLiu
  */
-import { PageResult } from '@/apis/common';
+import { PageResult, InfoResult } from '@/apis/common';
 
 // 由于import 一些属性，则 StoreTypes 需要 global 包裹 暴露至global
 declare global {
@@ -11,6 +11,7 @@ declare global {
     export interface CommonTypes {
       pageOneTotal: number;
       pageOneList: PageResult[];
+      info: Partial<InfoResult>;
       language?: string;
       userInfo: {
         userId?: string;
