@@ -12,11 +12,13 @@ export const configAutoRegistryComponents = () => {
     dirs: ['src/components'],
 
     // valid file extensions for components.
-    extensions: ['vue'],
+    extensions: ['vue', 'tsx'],
     // search for subdirectories
     deep: true,
     // resolvers for custom components
     resolvers: [AntDesignVueResolver({ importStyle: 'less' })],
+    // Apply custom transform over the path for importing
+    importPathTransform: (path: string) => path.replace(/.tsx$/, ''), // 解决 **.tsx 完整文件路径引入后无类型parse的问题
 
     // generate `components.d.ts` global declarations,
     // also accepts a path for custom filename

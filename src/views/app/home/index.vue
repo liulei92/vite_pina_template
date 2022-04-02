@@ -13,66 +13,70 @@
         tip="Input"
         :rules="[{ required: true, message: 'Please select your country!' }]"
         v-model:value="model.input"
+        @change="inputChange"
       >
         <template #suffix>
           <a-tooltip title="Extra information">
             <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
           </a-tooltip>
         </template>
-        <!-- <a-input v-model:value="model.input" /> -->
       </input-item>
-      <a-form-item
+      <select-item
         name="select"
         label="Select"
         has-feedback
         :rules="[{ required: true, message: 'Please select your country!' }]"
-      >
-        <a-select v-model:value="model.select" placeholder="Please select a country">
-          <a-select-option value="china">China</a-select-option>
-          <a-select-option value="usa">U.S.A</a-select-option>
-        </a-select>
-      </a-form-item>
-
-      <a-form-item
+        v-model:value="model.select"
+        placeholder="Please select a country"
+        :options="[
+          { title: 'China', value: 'china' },
+          { title: 'U.S.A', value: 'usa' },
+        ]"
+      />
+      <select-item
         name="selectMultiple"
         label="Select[multiple]"
         :rules="[
           { required: true, message: 'Please select your favourite colors!', type: 'array' },
         ]"
+        v-model:value="model.selectMultiple"
+        mode="multiple"
+        placeholder="Please select favourite colors"
+        :options="[
+          { title: 'Red', value: 'red' },
+          { title: 'Green', value: 'green' },
+          { title: 'Blue', value: 'blue' },
+        ]"
+      />
+
+      <form-item
+        name="number"
+        label="InputNumber"
+        :rules="[{ required: true, message: 'Please input number!' }]"
       >
-        <a-select
-          v-model:value="model.selectMultiple"
-          mode="multiple"
-          placeholder="Please select favourite colors"
-        >
-          <a-select-option value="red">Red</a-select-option>
-          <a-select-option value="green">Green</a-select-option>
-          <a-select-option value="blue">Blue</a-select-option>
-        </a-select>
-      </a-form-item>
-
-      <a-form-item label="InputNumber">
-        <a-form-item name="number" no-style>
-          <a-input-number v-model:value="model.number" :min="1" :max="10" />
-        </a-form-item>
+        <!-- <form-item name="number" no-style> -->
+        <a-input-number v-model:value="model.number" :min="1" :max="10" />
+        <!-- </form-item> -->
         <span class="ant-form-text">machines</span>
-      </a-form-item>
+      </form-item>
 
-      <a-form-item name="switch" label="Switch">
-        <a-switch v-model:checked="model.switch" />
-      </a-form-item>
+      <switch-item name="switch" label="Switch" v-model:checked="model.switch" />
 
-      <a-form-item name="radio" label="Radio.Group">
-        <a-radio-group v-model:value="model.radio">
-          <a-radio value="a">item 1</a-radio>
-          <a-radio value="b">item 2</a-radio>
-          <a-radio value="c">item 3</a-radio>
-        </a-radio-group>
-      </a-form-item>
+      <radio-group-item
+        name="radio"
+        label="Radio.Group"
+        v-model:value="model.radio"
+        optionType="button"
+        :options="[
+          { label: 'item 1', value: 'a' },
+          { label: 'item 2', value: 'b' },
+          { label: 'item 3', value: 'c' },
+          { label: 'item 4', value: 'd' },
+        ]"
+        @change="inputChange"
+      />
 
-      <a-form-item name="checkbox" label="Checkbox">
-        <a-checkbox v-model:checked="model.checkbox" />
-      </a-form-item>
+      <checkbox-item name="checkbox" label="Checkbox" v-model:checked="model.checkbox" />
 
       <a-form-item name="checkboxGroup" label="Checkbox.Group">
         <a-checkbox-group v-model:value="model.checkboxGroup">
@@ -137,7 +141,7 @@
   const model = ref({
     input: 'pinna',
     select: 'china',
-    selectMultiple: [],
+    selectMultiple: ['red'],
     number: 3,
     switch: false,
     radio: 'a',
@@ -147,6 +151,10 @@
   });
 
   const rules = ref({});
+
+  const inputChange = (...arg) => {
+    console.log(arg);
+  };
 
   const onSubmit = useDebounceFn(() => {
     const { validate } = unref(formRef)!;

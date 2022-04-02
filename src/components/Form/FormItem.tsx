@@ -8,25 +8,25 @@ import { QuestionCircleFilled } from '@ant-design/icons-vue';
 import { $vt } from '@/language';
 import { FormItemProps } from './props';
 
-const FormItemTsx = defineComponent({
-  name: 'FormItemTsx',
+export const FormItemSlots = ['help', 'label', 'extra'];
+
+const FormItem = defineComponent({
+  name: 'FormItem',
   inheritAttrs: false,
   props: FormItemProps,
-  slots: ['help', 'label', 'extra'],
+  slots: FormItemSlots,
   setup: function setup(props, { slots, attrs, expose }) {
     const formItemContext = Form.useInjectFormItemContext(); // 实例
     expose({
       formItemContext,
     });
     return () => {
-      const { label, extra, help, tip, ...others } = props;
+      const { label, tip, ...formItemProps } = props;
 
       return (
         <Form.Item
           label={
-            slots.label ? (
-              slots.label()
-            ) : (
+            label && (
               <span>
                 {$vt(label)}
                 {tip && (
@@ -37,16 +37,13 @@ const FormItemTsx = defineComponent({
               </span>
             )
           }
-          extra={slots.extra ? slots.extra() : $vt(extra)}
-          help={slots.help ? slots.help() : $vt(help)}
-          {...others}
+          {...formItemProps}
           {...attrs}
-        >
-          {slots?.default!()}
-        </Form.Item>
+          v-slots={slots}
+        ></Form.Item>
       );
     };
   },
 });
 
-export default FormItemTsx;
+export default FormItem;
