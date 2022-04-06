@@ -3,6 +3,7 @@
  * @Date: 2022-04-02 16:42:53
  * @Author: LeiLiu
  */
+import type { Slot } from 'vue';
 import { Form, Switch } from 'ant-design-vue';
 
 import { FormItemProps, SwitchProps, SwitchItemProps } from './props';
@@ -26,16 +27,16 @@ const SwitchItem = defineComponent({
     return () => {
       const formItemProps: IFormItemProps = {};
       const switchProps: ISwitchProps = {};
-      const formItemSlots = {};
-      const switchSlots = {};
+      const formItemSlots: Indexable<Slot> = {};
+      const switchSlots: Indexable<Slot> = {};
       for (const key in props) {
         if (key in FormItemProps) formItemProps[key] = props[key];
         if (key in SwitchProps) switchProps[key] = props[key];
         // others will need to done
       }
       for (const key in slots) {
-        if (FormItemSlots.includes(key)) formItemSlots[key] = slots[key];
-        if (SwitchSlots.includes(key)) switchSlots[key] = slots[key];
+        if (FormItemSlots.includes(key)) formItemSlots[key] = slots[key]!;
+        if (SwitchSlots.includes(key)) switchSlots[key] = slots[key]!;
         // others will need to done
       }
 

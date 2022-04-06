@@ -3,44 +3,17 @@
  * @Date: 2022-03-29 10:45:38
  * @Author: LeiLiu
  */
-import type { ModalFunc, ModalFuncProps } from 'ant-design-vue/lib/modal/Modal';
-
 // import { Modal, message as Message, notification } from 'ant-design-vue';
+import type { ModalFuncProps } from 'ant-design-vue/es/modal/Modal';
 import { InfoCircleFilled, CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
-import { NotificationArgsProps, ConfigProps } from 'ant-design-vue/lib/notification';
-import { isString } from '@/utils/is';
+import { isString, isFunction } from '@/utils/is';
 
-// 手动引入 message样式
-import 'ant-design-vue/es/message/style';
-import 'ant-design-vue/es/notification/style';
-
-export interface NotifyApi {
-  info(config: NotificationArgsProps): void;
-  success(config: NotificationArgsProps): void;
-  error(config: NotificationArgsProps): void;
-  warn(config: NotificationArgsProps): void;
-  warning(config: NotificationArgsProps): void;
-  open(args: NotificationArgsProps): void;
-  close(key: String): void;
-  config(options: ConfigProps): void;
-  destroy(): void;
-}
-
-export declare type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 export declare type IconType = 'success' | 'info' | 'error' | 'warning';
 export interface ModalOptionsEx extends Omit<ModalFuncProps, 'iconType'> {
-  iconType: 'warning' | 'success' | 'error' | 'info';
+  iconType?: IconType;
 }
-export type ModalOptionsPartial = Partial<ModalOptionsEx> & Pick<ModalOptionsEx, 'content'>;
-
-interface ConfirmOptions {
-  info: ModalFunc;
-  success: ModalFunc;
-  error: ModalFunc;
-  warn: ModalFunc;
-  warning: ModalFunc;
-}
+export type ModalOptionsPartial = RequireKey<ModalOptionsEx, 'content'>;
 
 function getIcon(iconType: string) {
   if (iconType === 'warning') {
@@ -54,18 +27,16 @@ function getIcon(iconType: string) {
   }
 }
 
-function renderContent({ content }: Pick<ModalOptionsEx, 'content'>) {
-  if (isString(content)) {
-    return <div innerHTML={`<div>${content as string}</div>`}></div>;
-  } else {
-    return content;
-  }
+function renderContent({ content }: ModalOptionsEx) {
+  if (isString(content)) return <div innerHTML={`<div>${content}</div>`}></div>;
+  else if (isFunction(content)) return content();
+  else content;
 }
 
 /**
  * @description: Create confirmation box
  */
-function createConfirm(options: ModalOptionsEx): ConfirmOptions {
+function createConfirm(options: ModalOptionsPartial) {
   const iconType = options.iconType || 'warning';
   Reflect.deleteProperty(options, 'iconType');
   const opt: ModalFuncProps = {
@@ -74,17 +45,17 @@ function createConfirm(options: ModalOptionsEx): ConfirmOptions {
     ...options,
     content: renderContent(options),
   };
-  return Modal.confirm(opt) as unknown as ConfirmOptions;
+  return Modal.confirm(opt);
 }
 
 const getBaseOptions = () => {
   return {
-    okText: '确定',
+    okText: 'OK',
     centered: true,
   };
 };
 
-function createModalOptions(options: ModalOptionsPartial, icon: string): ModalOptionsPartial {
+function createModalOptions(options: ModalOptionsPartial, icon: string) {
   return {
     ...getBaseOptions(),
     ...options,
@@ -115,12 +86,11 @@ notification.config({
 });
 
 /**
- * @description: message
+ * @description: message(notification, modal)
  */
 export function useMessage() {
   return {
-    createMessage: message,
-    notification: notification as NotifyApi,
+    notification,
     createConfirm: createConfirm,
     createSuccessModal,
     createErrorModal,

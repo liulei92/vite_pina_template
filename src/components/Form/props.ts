@@ -4,32 +4,36 @@
  * @Author: LeiLiu
  */
 import type { PropType } from 'vue';
-// import vueType from 'ant-design-vue/lib/_util/vue-types';
+// import vueType from 'ant-design-vue/es/_util/vue-types';
 import {
   formItemProps,
   type FormItemProps as FormItemPropsType,
-} from 'ant-design-vue/lib/form/FormItem';
-import InputProps from 'ant-design-vue/lib/input/inputProps';
-import type { InputProps as InputPropsType } from 'ant-design-vue/lib/input/inputProps';
-import { selectProps, type SelectProps as SelectPropsType } from 'ant-design-vue/lib/select';
-import {
-  switchProps as SwitchProps,
-  type SwitchProps as SwitchPropsPropsType,
-} from 'ant-design-vue/lib/switch';
+} from 'ant-design-vue/es/form/FormItem';
+import inputProps, { type InputProps as InputPropsType } from 'ant-design-vue/es/input/inputProps';
+import { selectProps, type SelectProps as SelectPropsType } from 'ant-design-vue/es/select';
+import { switchProps, type SwitchProps as SwitchPropsPropsType } from 'ant-design-vue/es/switch';
 import {
   radioGroupProps,
   type RadioGroupProps as RadioGroupPropsType,
-} from 'ant-design-vue/lib/radio/Group';
+} from 'ant-design-vue/es/radio/Group';
 import {
   checkboxProps,
   checkboxGroupProps,
   type CheckboxProps as CheckboxPropsType,
   type CheckboxGroupProps as CheckboxGroupPropsType,
-} from 'ant-design-vue/lib/checkbox/interface';
+} from 'ant-design-vue/es/checkbox/interface';
+import {
+  uploadProps,
+  type UploadProps as UploadPropsType,
+} from 'ant-design-vue/es/upload/interface';
+import {
+  buttonProps,
+  type ButtonProps as ButtonPropsType,
+} from 'ant-design-vue/es/button/buttonTypes';
 
 /* formItem */
 export const FormItemProps = {
-  ...formItemProps,
+  ...formItemProps(),
   // colon: vueType.bool, // 复写 props
   colon: Boolean as PropType<boolean>,
   tip: String as PropType<string>,
@@ -41,7 +45,7 @@ export interface IFormItemProps extends FormItemPropsType {
 }
 
 /* inputItem */
-export { InputProps };
+export const InputProps = inputProps();
 export const InputItemProps = {
   ...FormItemProps,
   ...InputProps,
@@ -64,7 +68,7 @@ export interface ISelectProps extends SelectPropsType {
 }
 
 /* switchItem */
-export { SwitchProps };
+export const SwitchProps = switchProps();
 export const SwitchItemProps = {
   ...FormItemProps,
   ...SwitchProps,
@@ -75,23 +79,13 @@ export interface ISwitchProps extends SwitchPropsPropsType {
 }
 
 /* radioGroupItem */
-export const RadioGroupProps = {
-  ...radioGroupProps,
-  onChange: {
-    type: Function as PropType<(...args: any[]) => any>,
-  },
-  'onUpdate:value': {
-    type: Function as PropType<(...args: any[]) => any>,
-  },
-};
+export const RadioGroupProps = radioGroupProps();
 export const RadioGroupItemProps = {
   ...FormItemProps,
   ...RadioGroupProps,
 };
 
 export interface IRadioGroupProps extends RadioGroupPropsType {
-  onChange?: (...args: any[]) => any;
-  'onUpdate:value'?: (...args: any[]) => any;
   [key: string]: any;
 }
 
@@ -100,7 +94,13 @@ export const CheckboxProps = checkboxProps();
 export const CheckboxItemProps = {
   ...FormItemProps,
   ...CheckboxProps,
-  tag: String as PropType<string>,
+  checked: {
+    type: [String, Number, Boolean] as PropType<string | number | boolean>,
+    default: undefined,
+  },
+  trueVal: [String, Number] as PropType<string | number>,
+  falseVal: [String, Number] as PropType<string | number>,
+  render: String as PropType<string>,
 };
 
 export interface ICheckboxProps extends CheckboxPropsType {
@@ -117,3 +117,46 @@ export const CheckboxGroupItemProps = {
 export interface ICheckboxGroupProps extends CheckboxGroupPropsType {
   [key: string]: any;
 }
+
+/* uploadItem */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { name, ...uploadPropsOthers } = uploadProps();
+export const UploadProps = { ...uploadPropsOthers };
+export const UploadItemProps = {
+  ...FormItemProps,
+  ...UploadProps,
+  fileFieldName: String as PropType<string>,
+  render: String as PropType<string>,
+};
+export interface IUploadProps extends UploadPropsType {
+  [key: string]: any;
+}
+
+/* buttonsItem */
+export const ButtonProps = {
+  ...buttonProps(),
+  hidden: Boolean as PropType<boolean>,
+  text: String as PropType<string>,
+};
+export interface IButtonProps extends ButtonPropsType {
+  hidden?: boolean;
+  text?: boolean;
+  [key: string]: any;
+}
+export const ButtonItemProps = {
+  ...FormItemProps,
+  okButton: {
+    type: Object as PropType<IButtonProps>,
+    defult: () => ({}),
+  },
+  resetButton: {
+    type: Object as PropType<IButtonProps>,
+    defult: () => ({}),
+  },
+  onOk: {
+    type: Function,
+  },
+  onReset: {
+    type: Function,
+  },
+};

@@ -58,3 +58,34 @@ declare interface ResData<T> {
   message: string;
   result: T;
 }
+
+// 必填K
+declare type RequireKey<T, K extends keyof T> = Omit<T, K> & {
+  [P in K]-?: T[P];
+};
+
+// 联合类型转元祖
+type isNever<T> = [T] extends [never] ? true : false;
+
+type UnionToIntersection<T> = (T extends any ? (x: T) => void : never) extends (x: infer R) => void
+  ? R
+  : never;
+
+type LastOfUnion<T> = UnionToIntersection<T extends any ? (x: T) => void : never> extends (
+  x: infer L,
+) => void
+  ? L
+  : never;
+
+type UnionToTuple<T, R extends any[] = []> = isNever<T> extends true
+  ? R
+  : UnionToTuple<Exclude<T, LastOfUnion<T>>, [LastOfUnion<T>, ...R]>;
+
+// RequireTupleOne<T, K[]> 的作用就是递归的将K[]的key用联合类型联合起来，相当于：
+// RequireTupleOne<V, ['a', 'b', 'c']> = RequireKey<V, 'a'> | RequireKey<V, 'b'> | RequireKey<V, 'c'>
+type RequireTupleOne<T, K extends any[], R extends any[] = []> = R['length'] extends K['length']
+  ? never
+  : RequireKey<V, K[R['length']]> | RequireTupleOne<T, K, [...R, 1]>;
+
+// 必选T其中一个
+type RequireAllOne<T> = RequireTupleOne<T, UnionToTuple<keyof T>>;

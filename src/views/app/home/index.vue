@@ -76,57 +76,86 @@
         @change="inputChange"
       />
 
-      <checkbox-item name="checkbox" label="Checkbox" v-model:checked="model.checkbox" />
+      <checkbox-item
+        name="checkbox"
+        label="Checkbox"
+        render="萌白DS"
+        trueVal="萌"
+        falseVal="白"
+        v-model:checked="model.checkbox"
+      />
 
-      <a-form-item name="checkboxGroup" label="Checkbox.Group">
-        <a-checkbox-group v-model:value="model.checkboxGroup">
-          <a-row>
-            <a-col :span="8">
-              <a-checkbox value="a" style="line-height: 32px">A</a-checkbox>
-            </a-col>
-            <a-col :span="8">
-              <a-checkbox value="b" style="line-height: 32px" disabled>B</a-checkbox>
-            </a-col>
-            <a-col :span="8">
-              <a-checkbox value="c" style="line-height: 32px">C</a-checkbox>
-            </a-col>
-            <a-col :span="8">
-              <a-checkbox value="d" style="line-height: 32px">D</a-checkbox>
-            </a-col>
-            <a-col :span="8">
-              <a-checkbox value="e" style="line-height: 32px">E</a-checkbox>
-            </a-col>
-            <a-col :span="8">
-              <a-checkbox value="f" style="line-height: 32px">F</a-checkbox>
-            </a-col>
-          </a-row>
-        </a-checkbox-group>
-      </a-form-item>
+      <checkbox-group-item
+        name="checkboxGroup"
+        label="Checkbox.Group"
+        v-model:value="model.checkboxGroup"
+        :options="[
+          { label: 'AA', value: 'a' },
+          { label: 'BB', value: 'b', disabled: true },
+          { label: 'CC', value: 'c' },
+          { label: 'DD', value: 'd' },
+          { label: 'EE', value: 'e' },
+        ]"
+      />
 
-      <!-- <a-form-item name="upload" label="Upload" extra="longgggggggggggggggggggggggggggggggggg">
-        <a-upload
-          v-model:fileList="model.upload"
-          name="logo"
-          action="/upload.do"
-          list-type="picture"
-        >
+      <form-item name="date-picker" label="DatePicker" v-bind="config">
+        <a-date-picker v-model:value="model['date-picker']" value-format="YYYY-MM-DD" />
+      </form-item>
+      <form-item name="date-time-picker" label="DatePicker[showTime]" v-bind="config">
+        <a-date-picker
+          v-model:value="model['date-time-picker']"
+          show-time
+          format="YYYY-MM-DD HH:mm:ss"
+          value-format="YYYY-MM-DD HH:mm:ss"
+        />
+      </form-item>
+      <form-item name="range-time-picker" label="RangePicker[showTime]" v-bind="rangeConfig">
+        <a-range-picker
+          v-model:value="model['range-time-picker']"
+          show-time
+          format="YYYY-MM-DD HH:mm:ss"
+          value-format="YYYY-MM-DD HH:mm:ss"
+        />
+      </form-item>
+      <form-item name="time-picker" label="TimePicker" v-bind="config">
+        <a-time-picker v-model:value="model['time-picker']" value-format="HH:mm:ss" />
+      </form-item>
+
+      <upload-item
+        name="upload"
+        label="Upload"
+        extra="longgggggggggggggggggggggggggggggggggg"
+        fileFieldName="file"
+        v-model:fileList="model.upload"
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        :headers="{
+          authorization: 'authorization-text',
+        }"
+        list-type="picture"
+        @change="uploadChange"
+      >
+        <template #render>
           <a-button>
             <template #icon><UploadOutlined /></template>
             Click to upload
           </a-button>
-        </a-upload>
-      </a-form-item> -->
+        </template>
+      </upload-item>
 
-      <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
-        <a-button type="primary" @click="onSubmit">Submit</a-button>
-      </a-form-item>
+      <buttons-item
+        :wrapper-col="{ span: 12, offset: 6 }"
+        :okButton="{ text: 'Submit', loading: okLoading }"
+        :resetButton="{ text: 'Reset' }"
+        @ok="onSubmit"
+        @reset="onReset"
+      />
     </a-form>
   </div>
 </template>
 
 <script lang="ts" setup name="Home">
-  import type { FormInstance } from 'ant-design-vue';
-  import { InfoCircleOutlined } from '@ant-design/icons-vue';
+  import type { FormInstance, UploadChangeParam } from 'ant-design-vue';
+  import { UploadOutlined, InfoCircleOutlined } from '@ant-design/icons-vue';
   import { hotMusic1 } from '@/apis/free';
 
   hotMusic1({ format: 'json' });
@@ -145,27 +174,62 @@
     number: 3,
     switch: false,
     radio: 'a',
-    checkbox: true,
+    checkbox: '白',
     checkboxGroup: ['a', 'b'],
+    'date-picker': undefined,
+    'date-time-picker': undefined,
+    'range-time-picker': undefined,
+    'time-picker': undefined,
     upload: [],
   });
 
   const rules = ref({});
 
+  const config = {
+    rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
+  };
+  const rangeConfig = {
+    rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
+  };
+
   const inputChange = (...arg) => {
     console.log(arg);
   };
 
-  const onSubmit = useDebounceFn(() => {
+  const okLoading = ref(false);
+
+  const onSubmit = useDebounceFn(async () => {
     const { validate } = unref(formRef)!;
-    validate()
+    okLoading.value = true;
+    return validate()
       .then((values) => {
         console.log(values);
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          okLoading.value = false;
+        }, 250);
       });
   }, 150);
+
+  const onReset = useDebounceFn(() => {
+    const { resetFields } = unref(formRef)!;
+    resetFields();
+  });
+
+  const uploadChange = (info: UploadChangeParam) => {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  };
 
   // export default defineComponent({
   //   name: 'Index',

@@ -3,6 +3,7 @@
  * @Date: 2022-04-02 16:49:20
  * @Author: LeiLiu
  */
+import type { Slot } from 'vue';
 import { Form, Radio } from 'ant-design-vue';
 
 import { FormItemProps, RadioGroupProps, RadioGroupItemProps } from './props';
@@ -26,16 +27,16 @@ const RadioGroupItem = defineComponent({
     return () => {
       const formItemProps: IFormItemProps = {};
       const radioGroupProps: IRadioGroupProps = {};
-      const formItemSlots = {};
-      const radioGroupSlots = {};
+      const formItemSlots: Indexable<Slot> = {};
+      const radioGroupSlots: Indexable<Slot> = {};
       for (const key in props) {
         if (key in FormItemProps) formItemProps[key] = props[key];
         if (key in RadioGroupProps) radioGroupProps[key] = props[key];
         // others will need to done
       }
       for (const key in slots) {
-        if (FormItemSlots.includes(key)) formItemSlots[key] = slots[key];
-        if (RadioGroupSlots.includes(key)) radioGroupSlots[key] = slots[key];
+        if (FormItemSlots.includes(key)) formItemSlots[key] = slots[key]!;
+        if (RadioGroupSlots.includes(key)) radioGroupSlots[key] = slots[key]!;
         // others will need to done
       }
 

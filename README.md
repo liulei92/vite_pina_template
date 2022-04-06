@@ -1034,3 +1034,8 @@ router.onError((error) => {
 - [x] ~~添加vite-plugin-vue-setup-extend vite-plugin-optimize-persist vite-plugin-package-config的使用~~
 
 https://github.com/vbenjs/vue-vben-admin
+
+### 0406
+- [x] ~~初步完成Form基础组件的设计(src/components/Form/*.tsx)~~
+- [ ] todo BaseForm 组件和 useBaseForm hook
+- [ ] todo useCnmpConfig hook 设计
