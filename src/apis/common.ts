@@ -8,6 +8,7 @@ import { get } from '@/utils/http';
 enum URL {
   page_one_list = '/v1/common/page_one/list',
   info = '/v1/common/info',
+  testForm = '/v1/common/testForm',
 }
 
 export interface PageReqParams {
@@ -34,3 +35,11 @@ export interface InfoResult {
   email: string;
 }
 export const info = async () => get<InfoResult>(URL.info);
+
+export interface TestFormResult {
+  id: string;
+  phone: string;
+  select: string;
+  fulij: string;
+}
+export const testForm = async () => get<TestFormResult>(URL.testForm);

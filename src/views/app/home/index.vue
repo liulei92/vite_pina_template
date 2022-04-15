@@ -3,160 +3,219 @@
     <svg-icon icon-class="feedback_time" />
     <lang-select class="fixed top-10px right-10px" />
     {{ model }}
-    <a-form ref="formRef" :model="model" :rules="rules" v-bind="formItemLayout">
-      <form-item label="Plain Text" tip="Plain Text">
-        <span class="ant-form-text">China</span>
-      </form-item>
-      <input-item
-        name="input"
-        label="Input"
-        tip="Input"
-        :rules="[{ required: true, message: 'Please select your country!' }]"
-        v-model:value="model.input"
-        @change="inputChange"
-      >
-        <template #suffix>
-          <a-tooltip title="Extra information">
-            <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
-          </a-tooltip>
-        </template>
-      </input-item>
-      <select-item
-        name="select"
-        label="Select"
-        has-feedback
-        :rules="[{ required: true, message: 'Please select your country!' }]"
-        v-model:value="model.select"
-        placeholder="Please select a country"
-        :options="[
-          { title: 'China', value: 'china' },
-          { title: 'U.S.A', value: 'usa' },
-        ]"
-      />
-      <select-item
-        name="selectMultiple"
-        label="Select[multiple]"
-        :rules="[
-          { required: true, message: 'Please select your favourite colors!', type: 'array' },
-        ]"
-        v-model:value="model.selectMultiple"
-        mode="multiple"
-        placeholder="Please select favourite colors"
-        :options="[
-          { title: 'Red', value: 'red' },
-          { title: 'Green', value: 'green' },
-          { title: 'Blue', value: 'blue' },
-        ]"
-      />
+    <a-row>
+      <a-col :span="12">
+        <a-form ref="formRef" :model="model" :rules="rules" v-bind="formItemLayout">
+          <form-item label="Plain Text" tip="Plain Text">
+            <span class="ant-form-text">China</span>
+          </form-item>
+          <input-item
+            name="input"
+            label="Input"
+            tip="Input"
+            :rules="[{ required: true, message: 'Please select your country!' }]"
+            v-model:value="model.input"
+            @change="inputChange"
+          >
+            <template #suffix>
+              <a-tooltip title="Extra information">
+                <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+              </a-tooltip>
+            </template>
+          </input-item>
+          <select-item
+            name="select"
+            label="Select"
+            has-feedback
+            :rules="[{ required: true, message: 'Please select your country!' }]"
+            v-model:value="model.select"
+            placeholder="Please select a country"
+            :options="[
+              { title: 'China', value: 'china' },
+              { title: 'U.S.A', value: 'usa' },
+            ]"
+          />
+          <select-item
+            name="selectMultiple"
+            label="Select[multiple]"
+            :rules="[
+              { required: true, message: 'Please select your favourite colors!', type: 'array' },
+            ]"
+            v-model:value="model.selectMultiple"
+            mode="multiple"
+            placeholder="Please select favourite colors"
+            :options="[
+              { title: 'Red', value: 'red' },
+              { title: 'Green', value: 'green' },
+              { title: 'Blue', value: 'blue' },
+            ]"
+          />
 
-      <form-item
-        name="number"
-        label="InputNumber"
-        :rules="[{ required: true, message: 'Please input number!' }]"
-      >
-        <!-- <form-item name="number" no-style> -->
-        <a-input-number v-model:value="model.number" :min="1" :max="10" />
-        <!-- </form-item> -->
-        <span class="ant-form-text">machines</span>
-      </form-item>
+          <form-item
+            name="number"
+            label="InputNumber"
+            :rules="[{ required: true, message: 'Please input number!' }]"
+          >
+            <!-- <form-item name="number" no-style> -->
+            <a-input-number v-model:value="model.number" :min="1" :max="10" />
+            <!-- </form-item> -->
+            <span class="ant-form-text">machines</span>
+          </form-item>
 
-      <switch-item name="switch" label="Switch" v-model:checked="model.switch" />
+          <switch-item name="switch" label="Switch" v-model:checked="model.switch" />
 
-      <radio-group-item
-        name="radio"
-        label="Radio.Group"
-        v-model:value="model.radio"
-        optionType="button"
-        :options="[
-          { label: 'item 1', value: 'a' },
-          { label: 'item 2', value: 'b' },
-          { label: 'item 3', value: 'c' },
-          { label: 'item 4', value: 'd' },
-        ]"
-        @change="inputChange"
-      />
+          <radio-group-item
+            name="radio"
+            label="Radio.Group"
+            v-model:value="model.radio"
+            optionType="button"
+            :options="[
+              { label: 'item 1', value: 'a' },
+              { label: 'item 2', value: 'b' },
+              { label: 'item 3', value: 'c' },
+              { label: 'item 4', value: 'd' },
+            ]"
+            @change="inputChange"
+          />
 
-      <checkbox-item
-        name="checkbox"
-        label="Checkbox"
-        render="萌白DS"
-        trueVal="萌"
-        falseVal="白"
-        v-model:checked="model.checkbox"
-      />
+          <checkbox-item
+            name="checkbox"
+            label="Checkbox"
+            render="萌白DS"
+            trueVal="萌"
+            falseVal="白"
+            v-model:checked="model.checkbox"
+          />
 
-      <checkbox-group-item
-        name="checkboxGroup"
-        label="Checkbox.Group"
-        v-model:value="model.checkboxGroup"
-        :options="[
-          { label: 'AA', value: 'a' },
-          { label: 'BB', value: 'b', disabled: true },
-          { label: 'CC', value: 'c' },
-          { label: 'DD', value: 'd' },
-          { label: 'EE', value: 'e' },
-        ]"
-      />
+          <checkbox-group-item
+            name="checkboxGroup"
+            label="Checkbox.Group"
+            v-model:value="model.checkboxGroup"
+            :options="[
+              { label: 'AA', value: 'a' },
+              { label: 'BB', value: 'b', disabled: true },
+              { label: 'CC', value: 'c' },
+              { label: 'DD', value: 'd' },
+              { label: 'EE', value: 'e' },
+            ]"
+          />
 
-      <form-item name="date-picker" label="DatePicker" v-bind="config">
-        <a-date-picker v-model:value="model['date-picker']" value-format="YYYY-MM-DD" />
-      </form-item>
-      <form-item name="date-time-picker" label="DatePicker[showTime]" v-bind="config">
-        <a-date-picker
-          v-model:value="model['date-time-picker']"
-          show-time
-          format="YYYY-MM-DD HH:mm:ss"
-          value-format="YYYY-MM-DD HH:mm:ss"
-        />
-      </form-item>
-      <form-item name="range-time-picker" label="RangePicker[showTime]" v-bind="rangeConfig">
-        <a-range-picker
-          v-model:value="model['range-time-picker']"
-          show-time
-          format="YYYY-MM-DD HH:mm:ss"
-          value-format="YYYY-MM-DD HH:mm:ss"
-        />
-      </form-item>
-      <form-item name="time-picker" label="TimePicker" v-bind="config">
-        <a-time-picker v-model:value="model['time-picker']" value-format="HH:mm:ss" />
-      </form-item>
+          <form-item name="date-picker" label="DatePicker" v-bind="config">
+            <a-date-picker v-model:value="model['date-picker']" value-format="YYYY-MM-DD" />
+          </form-item>
+          <form-item name="date-time-picker" label="DatePicker[showTime]" v-bind="config">
+            <a-date-picker
+              v-model:value="model['date-time-picker']"
+              show-time
+              format="YYYY-MM-DD HH:mm:ss"
+              value-format="YYYY-MM-DD HH:mm:ss"
+            />
+          </form-item>
+          <form-item name="range-time-picker" label="RangePicker[showTime]" v-bind="rangeConfig">
+            <a-range-picker
+              v-model:value="model['range-time-picker']"
+              show-time
+              format="YYYY-MM-DD HH:mm:ss"
+              value-format="YYYY-MM-DD HH:mm:ss"
+            />
+          </form-item>
+          <form-item name="time-picker" label="TimePicker" v-bind="config">
+            <a-time-picker v-model:value="model['time-picker']" value-format="HH:mm:ss" />
+          </form-item>
 
-      <upload-item
-        name="upload"
-        label="Upload"
-        extra="longgggggggggggggggggggggggggggggggggg"
-        fileFieldName="file"
-        v-model:fileList="model.upload"
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        :headers="{
-          authorization: 'authorization-text',
-        }"
-        list-type="picture"
-        @change="uploadChange"
-      >
-        <template #render>
-          <a-button>
-            <template #icon><UploadOutlined /></template>
-            Click to upload
-          </a-button>
-        </template>
-      </upload-item>
+          <upload-item
+            name="upload"
+            label="Upload"
+            extra="longgggggggggggggggggggggggggggggggggg"
+            fileFieldName="file"
+            v-model:fileList="model.upload"
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            :headers="{
+              authorization: 'authorization-text',
+            }"
+            list-type="picture"
+            @change="uploadChange"
+          >
+            <template #render>
+              <a-button>
+                <template #icon><UploadOutlined /></template>
+                Click to upload
+              </a-button>
+            </template>
+          </upload-item>
 
-      <buttons-item
-        :wrapper-col="{ span: 12, offset: 6 }"
-        :okButton="{ text: 'Submit', loading: okLoading }"
-        :resetButton="{ text: 'Reset' }"
-        @ok="onSubmit"
-        @reset="onReset"
-      />
-    </a-form>
+          <buttons-item
+            :wrapper-col="{ span: 12, offset: 6 }"
+            :okButton="{ text: 'Submit', loading: okLoading }"
+            :resetButton="{ text: 'Reset' }"
+            @ok="onSubmit"
+            @reset="onReset"
+          />
+        </a-form>
+      </a-col>
+
+      <a-col :span="12">
+        <a-form v-bind="formItemLayout">
+          <input-item
+            label="ID"
+            tip="ID"
+            v-model:value="model2.id"
+            @change="inputChange"
+            v-bind="validateInfos.id"
+          >
+            <template #suffix>
+              <a-tooltip title="Extra information">
+                <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+              </a-tooltip>
+            </template>
+          </input-item>
+          <input-item
+            label="Phone"
+            tip="Phone"
+            v-model:value="model2.phone"
+            v-bind="validateInfos.phone"
+          />
+          <select-item
+            label="Select"
+            has-feedback
+            v-model:value="model2.select"
+            placeholder="Please select a country"
+            :options="[
+              { title: 'China', value: 'china' },
+              { title: 'U.S.A', value: 'usa' },
+            ]"
+          />
+          <checkbox-group-item
+            label="Fulij"
+            v-model:value="model2.fulij"
+            :options="[
+              { label: 'AA', value: 'aa' },
+              { label: 'BB', value: 'bb', disabled: true },
+              { label: 'CC', value: 'cc' },
+              { label: 'DD', value: 'dd' },
+              { label: 'EE', value: 'ee' },
+            ]"
+          />
+          <buttons-item
+            :wrapper-col="{ span: 12, offset: 6 }"
+            :okButton="{ text: 'Submit', loading: okLoading }"
+            :resetButton="{ text: 'Reset' }"
+            @ok="onSubmit2"
+            @reset="onReset2"
+          />
+        </a-form>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script lang="ts" setup name="Home">
   import type { FormInstance, UploadChangeParam } from 'ant-design-vue';
+  import type { Rule, RuleObject } from 'ant-design-vue/es/form';
   import { UploadOutlined, InfoCircleOutlined } from '@ant-design/icons-vue';
   import { hotMusic1 } from '@/apis/free';
+  import { testForm } from '@/apis/common';
+  import { useFormConfig } from '@/hooks/useFormConfig';
 
   hotMusic1({ format: 'json' });
 
@@ -165,9 +224,10 @@
     wrapperCol: { span: 14 },
   };
 
+  /* form1 */
   const formRef = ref<FormInstance>();
 
-  const model = ref({
+  const model = reactive({
     input: 'pinna',
     select: 'china',
     selectMultiple: ['red'],
@@ -183,7 +243,7 @@
     upload: [],
   });
 
-  const rules = ref({});
+  const rules = reactive({});
 
   const config = {
     rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
@@ -230,6 +290,69 @@
       message.error(`${info.file.name} file upload failed.`);
     }
   };
+
+  /* form2 */
+  const model2 = reactive({
+    id: '',
+    phone: '',
+    select: 'china',
+    fulij: [],
+  });
+
+  const rules2: Recordable<RuleObject | RuleObject[]> = reactive({
+    id: [
+      { required: true, message: 'Please input your id!' },
+      {
+        min: 3,
+        max: 5,
+        message: 'Length should be 3 to 5',
+        trigger: 'blur',
+      },
+    ],
+    phone: [
+      { required: true, message: 'Please input your phone!' },
+      // {
+      //   min: 8,
+      //   max: 32,
+      //   message: 'Length should be 8 to 32',
+      //   trigger: 'blur',
+      // },
+      {
+        validator: async (_rule: Rule, value: string) => {
+          if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(value)) {
+            return Promise.reject('Please input right phone number');
+          }
+          return Promise.resolve();
+        },
+      },
+    ],
+    select: [{ required: true, message: 'Please select your select!' }],
+  });
+
+  const { validate, validateInfos, updateModel, resetOriginalFields } = useFormConfig(
+    model2,
+    rules2,
+  );
+
+  // 异步更新
+  testForm().then((res) => {
+    updateModel(res, !0);
+  });
+
+  const onSubmit2 = () => {
+    validate()
+      .then((values) => {
+        console.log(values);
+        console.log(model2);
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  };
+
+  const onReset2 = useDebounceFn(() => {
+    resetOriginalFields();
+  });
 
   // export default defineComponent({
   //   name: 'Index',

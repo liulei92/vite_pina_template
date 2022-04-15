@@ -47,4 +47,17 @@ export default [
       },
     }),
   },
+  {
+    url: '/v1/common/testForm',
+    method: 'get',
+    response: () => ({
+      code: 0,
+      result: {
+        id: '3333',
+        phone: '13333333331',
+        select: 'china',
+        fulij: ['aa'],
+      },
+    }),
+  },
 ] as MockMethod[];

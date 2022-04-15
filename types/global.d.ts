@@ -89,3 +89,14 @@ type RequireTupleOne<T, K extends any[], R extends any[] = []> = R['length'] ext
 
 // 必选T其中一个
 type RequireAllOne<T> = RequireTupleOne<T, UnionToTuple<keyof T>>;
+
+// typescript获取函数的参数类型
+// type ArrType = Parameters<typeof updata>
+// ArrType => [state: any]
+
+// 获取函数的返回值类型
+// type Return = ReturnType<typeof update>;
+// ReturnType =>
+// {
+//     router: any;
+//}

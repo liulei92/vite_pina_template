@@ -36,6 +36,11 @@ export const FormItemProps = {
   ...formItemProps(),
   // colon: vueType.bool, // 复写 props
   colon: Boolean as PropType<boolean>,
+  // validateFirst: undefined
+  validateFirst: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
   tip: String as PropType<string>,
 };
 
@@ -140,7 +145,7 @@ export const ButtonProps = {
 };
 export interface IButtonProps extends ButtonPropsType {
   hidden?: boolean;
-  text?: boolean;
+  text?: string;
   [key: string]: any;
 }
 export const ButtonItemProps = {

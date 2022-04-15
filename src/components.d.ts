@@ -5,14 +5,11 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
-    ACheckbox: typeof import('ant-design-vue/es')['Checkbox']
-    ACheckboxGroup: typeof import('ant-design-vue/es')['CheckboxGroup']
     ACol: typeof import('ant-design-vue/es')['Col']
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     ADatePicker: typeof import('ant-design-vue/es')['DatePicker']
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
     AForm: typeof import('ant-design-vue/es')['Form']
-    AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInputNumber: typeof import('ant-design-vue/es')['InputNumber']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
@@ -20,7 +17,6 @@ declare module 'vue' {
     ARow: typeof import('ant-design-vue/es')['Row']
     ATimePicker: typeof import('ant-design-vue/es')['TimePicker']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
-    AUpload: typeof import('ant-design-vue/es')['Upload']
     ButtonsItem: typeof import('./components/Form/ButtonsItem')['default']
     CheckboxGroupItem: typeof import('./components/Form/CheckboxGroupItem')['default']
     CheckboxItem: typeof import('./components/Form/CheckboxItem')['default']
