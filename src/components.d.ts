@@ -15,6 +15,7 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ARangePicker: typeof import('ant-design-vue/es')['RangePicker']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASpin: typeof import('ant-design-vue/es')['Spin']
     ATimePicker: typeof import('ant-design-vue/es')['TimePicker']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ButtonsItem: typeof import('./components/Form/ButtonsItem')['default']

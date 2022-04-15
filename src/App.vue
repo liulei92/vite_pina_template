@@ -3,11 +3,12 @@
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
   // import zhCN from 'ant-design-vue/es/locale/zh_CN';
   // import enUS from 'ant-design-vue/es/locale/en_US';
+  import { LoadingOutlined } from '@ant-design/icons-vue';
 
   import { useCommonStore } from '@/store/modules/common';
   import { useLanguage } from '@/hooks/useLanguage';
 
-  const { fetchInfo } = useCommonStore();
+  const { wholeSpin, fetchInfo } = useCommonStore();
   fetchInfo()
     .then((res) => {
       console.log(res);
@@ -25,6 +26,13 @@
     }
     return document.body;
   };
+
+  const indicator = h(LoadingOutlined, {
+    style: {
+      fontSize: '24px',
+    },
+    spin: true,
+  });
 </script>
 
 <template>
@@ -33,6 +41,8 @@
     :getPopupContainer="getPopupContainer"
     :locale="antConfigLocale"
   >
-    <router-view />
+    <a-spin :indicator="indicator" v-bind="wholeSpin">
+      <router-view />
+    </a-spin>
   </a-config-provider>
 </template>

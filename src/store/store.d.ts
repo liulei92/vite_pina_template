@@ -4,6 +4,7 @@
  * @Author: LeiLiu
  */
 import { PageResult, InfoResult } from '@/apis/common';
+import { VNode } from 'vue';
 
 // 由于import 一些属性，则 StoreTypes 需要 global 包裹 暴露至global
 declare global {
@@ -20,6 +21,11 @@ declare global {
         [key: string]: any;
       } | null;
       token?: string;
+      wholeSpin: {
+        spinning: boolean;
+        tip?: string | VNode;
+        delay?: number;
+      };
     }
 
     export interface CountTypes {

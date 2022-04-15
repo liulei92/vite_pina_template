@@ -49,7 +49,6 @@ const CheckboxItem = defineComponent({
       const checked = checkboxProps['checked'];
       if (checked === props.trueVal) checkboxProps['checked'] = true;
       else if (checked === props.falseVal) checkboxProps['checked'] = false;
-      console.log(checkboxProps);
 
       return (
         <FromItem {...formItemProps} {...attrs} v-slots={formItemSlots}>

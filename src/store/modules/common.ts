@@ -64,6 +64,11 @@ export const commonStore = defineStore('common', () => {
       },
     }),
     token: computed(() => state.userInfo?.token),
+    wholeSpin: {
+      spinning: false,
+      tip: '',
+      delay: 0,
+    },
   });
 
   function setLanguage(language: string) {
@@ -93,12 +98,21 @@ export const commonStore = defineStore('common', () => {
     return res;
   }
 
+  function setWholeSpin(spin: boolean | StoreTypes.CommonTypes['wholeSpin']) {
+    if (typeof spin === 'boolean') {
+      state.wholeSpin = { spinning: spin, tip: '' };
+    } else {
+      state.wholeSpin = spin;
+    }
+  }
+
   return {
     ...toRefs(state),
     setLanguage,
     setUserInfo,
     fetchPageOne,
     fetchInfo,
+    setWholeSpin,
   };
 });
 
@@ -111,6 +125,7 @@ export function useCommonStore() {
     setUserInfo: store.setUserInfo,
     fetchPageOne: store.fetchPageOne,
     fetchInfo: store.fetchInfo,
+    setWholeSpin: store.setWholeSpin,
   };
 }
 

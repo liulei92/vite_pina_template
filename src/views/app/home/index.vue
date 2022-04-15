@@ -5,7 +5,13 @@
     {{ model }}
     <a-row>
       <a-col :span="12">
-        <a-form ref="formRef" :model="model" :rules="rules" v-bind="formItemLayout">
+        <a-form
+          ref="formRef"
+          :model="model"
+          :rules="rules"
+          :scrollToFirstError="true"
+          v-bind="formItemLayout"
+        >
           <form-item label="Plain Text" tip="Plain Text">
             <span class="ant-form-text">China</span>
           </form-item>
@@ -155,27 +161,18 @@
       </a-col>
 
       <a-col :span="12">
-        <a-form v-bind="formItemLayout">
-          <input-item
-            label="ID"
-            tip="ID"
-            v-model:value="model2.id"
-            @change="inputChange"
-            v-bind="validateInfos.id"
-          >
+        <a-form ref="formRef2" :model="model2" :rules="rules2" v-bind="formItemLayout">
+          <input-item name="id" label="ID" tip="ID" v-model:value="model2.id" @change="inputChange">
             <template #suffix>
               <a-tooltip title="Extra information">
                 <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
               </a-tooltip>
             </template>
           </input-item>
-          <input-item
-            label="Phone"
-            tip="Phone"
-            v-model:value="model2.phone"
-            v-bind="validateInfos.phone"
-          />
+          <input-item name="phone" label="Phone" tip="Phone" v-model:value="model2.phone" />
           <select-item
+            v-if="false"
+            name="select"
             label="Select"
             has-feedback
             v-model:value="model2.select"
@@ -186,6 +183,7 @@
             ]"
           />
           <checkbox-group-item
+            name="fulij"
             label="Fulij"
             v-model:value="model2.fulij"
             :options="[
@@ -211,11 +209,11 @@
 
 <script lang="ts" setup name="Home">
   import type { FormInstance, UploadChangeParam } from 'ant-design-vue';
-  import type { Rule, RuleObject } from 'ant-design-vue/es/form';
+  import type { Rule /* , RuleObject */ } from 'ant-design-vue/es/form';
   import { UploadOutlined, InfoCircleOutlined } from '@ant-design/icons-vue';
   import { hotMusic1 } from '@/apis/free';
   import { testForm } from '@/apis/common';
-  import { useFormConfig } from '@/hooks/useFormConfig';
+  import { useFormRef } from '@/hooks/useFromRef';
 
   hotMusic1({ format: 'json' });
 
@@ -291,68 +289,80 @@
     }
   };
 
-  /* form2 */
-  const model2 = reactive({
-    id: '',
-    phone: '',
-    select: 'china',
-    fulij: [],
-  });
-
-  const rules2: Recordable<RuleObject | RuleObject[]> = reactive({
-    id: [
-      { required: true, message: 'Please input your id!' },
-      {
-        min: 3,
-        max: 5,
-        message: 'Length should be 3 to 5',
-        trigger: 'blur',
-      },
-    ],
-    phone: [
-      { required: true, message: 'Please input your phone!' },
-      // {
-      //   min: 8,
-      //   max: 32,
-      //   message: 'Length should be 8 to 32',
-      //   trigger: 'blur',
-      // },
-      {
-        validator: async (_rule: Rule, value: string) => {
-          if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(value)) {
-            return Promise.reject('Please input right phone number');
-          }
-          return Promise.resolve();
+  const {
+    formRef: formRef2,
+    model: model2,
+    rules: rules2,
+    updateModel,
+    resetOriginalFields,
+    initForm,
+    submitForm,
+  } = useFormRef(
+    {
+      id: '',
+      phone: '',
+      select: 'china',
+      fulij: ['aa'],
+    },
+    {
+      id: [
+        { required: true, message: 'Please input your id!' },
+        {
+          min: 3,
+          max: 5,
+          message: 'Length should be 3 to 5',
+          // trigger: 'blur',
         },
-      },
-    ],
-    select: [{ required: true, message: 'Please select your select!' }],
-  });
-
-  const { validate, validateInfos, updateModel, resetOriginalFields } = useFormConfig(
-    model2,
-    rules2,
+      ],
+      phone: [
+        { required: true, message: 'Please input your phone!' },
+        {
+          validator: async (_rule: Rule, value: string) => {
+            // if (unref(model2).id === '3333') return Promise.resolve();
+            if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(value)) {
+              return Promise.reject('Please input right phone number');
+            }
+            return Promise.resolve();
+          },
+        },
+      ],
+      select: [{ required: true, message: 'Please select your select!' }],
+    },
   );
 
   // 异步更新
-  testForm().then((res) => {
-    updateModel(res, !0);
-  });
+  const { reinit } = initForm(
+    () =>
+      testForm().then((res) => {
+        updateModel(res, !0);
+      }),
+    { immediate: false },
+  );
 
-  const onSubmit2 = () => {
-    validate()
+  const onSubmit2 = useDebounceFn(() => {
+    // unref(formRef2)!
+    //   .validate()
+    //   .then((values) => {
+    //     console.log(toRaw(values));
+    //     console.log(model2.value);
+    //   })
+    //   .catch((err) => {
+    //     console.log('error', err);
+    //   });
+    submitForm()
       .then((values) => {
-        console.log(values);
-        console.log(model2);
+        console.log(toRaw(values));
+        console.log(model2.value);
+        reinit();
       })
-      .catch((err) => {
-        console.log('error', err);
+      .catch(() => {
+        console.log(1);
       });
-  };
+  }, 150);
 
   const onReset2 = useDebounceFn(() => {
     resetOriginalFields();
-  });
+  }, 150);
 
   // export default defineComponent({
   //   name: 'Index',
