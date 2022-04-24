@@ -51,8 +51,8 @@ const ButtonsItem = defineComponent({
       const formItemSlots: Indexable<Slot> = {};
       for (const key in props) {
         if (key in FormItemProps) formItemProps[key] = props[key];
-        if (key === 'okButton') okButtonProps = props.okButton!;
-        if (key === 'resetButton') resetButtonProps = props.resetButton!;
+        if (key === 'okButton') okButtonProps = props.okButton! || {};
+        if (key === 'resetButton') resetButtonProps = props.resetButton! || {};
         // others will need to done
       }
       for (const key in slots) {
@@ -66,11 +66,14 @@ const ButtonsItem = defineComponent({
             <Button
               class="m-r-8px"
               type="default"
+              loading={resetLoading.value}
               {...resetButtonProps}
               v-slots={slots.resetIcon ? { icon: slots.resetIcon } : {}}
               onClick={(e) => resetEvent(e, resetButtonProps)}
             >
-              {resetButtonProps?.text
+              {props.resetText
+                ? props.resetText
+                : resetButtonProps?.text
                 ? resetButtonProps?.text
                 : slots?.resetText
                 ? slots?.resetText()
@@ -85,7 +88,13 @@ const ButtonsItem = defineComponent({
               v-slots={slots.okIcon ? { icon: slots.okIcon } : {}}
               onClick={(e) => okEvent(e, okButtonProps)}
             >
-              {okButtonProps?.text ? okButtonProps?.text : slots?.okText ? slots?.okText() : null}
+              {props.okText
+                ? props.okText
+                : okButtonProps?.text
+                ? okButtonProps?.text
+                : slots?.okText
+                ? slots?.okText()
+                : null}
             </Button>
           )}
           {slots?.default && slots?.default()}

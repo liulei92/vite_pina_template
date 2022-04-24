@@ -161,6 +161,7 @@
       </a-col>
 
       <a-col :span="12">
+        <h3 class="text-center">useFormRef</h3>
         <a-form ref="formRef2" :model="model2" :rules="rules2" v-bind="formItemLayout">
           <input-item name="id" label="ID" tip="ID" v-model:value="model2.id" @change="inputChange">
             <template #suffix>
@@ -196,8 +197,8 @@
           />
           <buttons-item
             :wrapper-col="{ span: 12, offset: 6 }"
-            :okButton="{ text: 'Submit', loading: okLoading }"
-            :resetButton="{ text: 'Reset' }"
+            okText="Submit"
+            resetText="Reset"
             @ok="onSubmit2"
             @reset="onReset2"
           />
@@ -336,7 +337,7 @@
       testForm().then((res) => {
         updateModel(res, !0);
       }),
-    { immediate: false },
+    { immediate: true },
   );
 
   const onSubmit2 = useDebounceFn(() => {

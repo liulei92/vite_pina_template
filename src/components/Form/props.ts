@@ -5,6 +5,7 @@
  */
 import type { PropType } from 'vue';
 // import vueType from 'ant-design-vue/es/_util/vue-types';
+// import { formProps, type FormProps as FormPropsType } from 'ant-design-vue/es/form';
 import {
   formItemProps,
   type FormItemProps as FormItemPropsType,
@@ -30,6 +31,33 @@ import {
   buttonProps,
   type ButtonProps as ButtonPropsType,
 } from 'ant-design-vue/es/button/buttonTypes';
+
+// export const FormProps = {
+//   ...formProps(),
+//   defaultModel: {
+//     type: Object as PropType<Indexable>,
+//     default: () => ({}),
+//     required: true,
+//   },
+//   init: {
+//     type: Function as PropType<PromiseFn>,
+//     default: () => {},
+//     required: true,
+//   },
+//   submit: {
+//     type: Function as PropType<Fn>,
+//     default: () => {},
+//     required: true,
+//   },
+//   reset: {
+//     type: Function as PropType<Fn>,
+//     default: () => {},
+//   },
+// };
+
+// export interface IFormProps extends FormPropsType {
+//   [key: string]: any;
+// }
 
 /* formItem */
 export const FormItemProps = {
@@ -154,10 +182,12 @@ export const ButtonItemProps = {
     type: Object as PropType<IButtonProps>,
     defult: () => ({}),
   },
+  okText: String,
   resetButton: {
     type: Object as PropType<IButtonProps>,
     defult: () => ({}),
   },
+  resetText: String,
   onOk: {
     type: Function,
   },

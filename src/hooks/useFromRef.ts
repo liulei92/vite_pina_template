@@ -10,7 +10,7 @@ import { useCommonStore } from '@/store/modules/common';
 
 export function useFormRef<T extends object>(
   defaultValue: T,
-  rules: Recordable<RuleObject | RuleObject[]>,
+  rules: Recordable<RuleObject | RuleObject[]> = {},
 ) {
   const formRef = ref<FormInstance>();
   const state = reactive({
