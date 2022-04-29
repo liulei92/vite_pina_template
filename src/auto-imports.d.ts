@@ -67,6 +67,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
+  const useHead: typeof import('@vueuse/head')['useHead']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']

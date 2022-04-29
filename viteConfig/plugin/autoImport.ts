@@ -45,6 +45,7 @@ export const configAutoImportDeps = () =>
           'useIntervalFn',
           'useTimeoutFn',
         ],
+        '@vueuse/head': ['useHead'],
         // https://www.lodashjs.com/docs/lodash.omitBy
         'lodash-es': ['deepMerge', 'cloneDeep', 'omit', 'pick', 'toArray'],
         'ant-design-vue': ['Modal', 'message', 'notification'],

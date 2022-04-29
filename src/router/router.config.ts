@@ -3,13 +3,13 @@
  * @Date: 2022-03-24 15:45:08
  * @Author: LeiLiu
  */
-import { RouterView } from 'vue-router';
+// import { RouterView } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-// import BlankLayout from '@/layouts/BlankLayout.vue';
+import BlankLayout from '@/layouts/BlankLayout.vue';
 
-const BlankLayout = () => {
-  return h(RouterView);
-};
+// const BlankLayout = () => {
+//   return h(RouterView);
+// };
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -46,6 +46,16 @@ export const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('@/views/login/index.vue'),
     meta: { title: 'Login' },
+  },
+  {
+    path: '/test',
+    component: () => import('@/views/test/index.vue'),
+    name: 'test',
+    meta: {
+      title: '测试',
+      icon: '',
+      auth: ['test'],
+    },
   },
   {
     path: '/',

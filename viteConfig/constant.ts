@@ -22,3 +22,6 @@ export const FIT = '12'; // 代码适配 1 是否开启legacy 2 是否开启gzip
 
 export const LOCAL_MOCK = true; // 是否开启mock
 export const PROD_MOCK = false;
+
+export const PWA_APP_TITLE = 'Pingm';
+export const PWA_APP_SHORT_NAME = 'Pingm';

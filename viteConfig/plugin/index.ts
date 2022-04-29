@@ -18,6 +18,7 @@ import { configMockPlugin } from './mock';
 import { configLegacyPlugin } from './legacy';
 import { configCompressPlugin } from './compress';
 import { configVisualizerPlugin } from './analysis';
+import { configPwaPlugin } from './pwa';
 
 // 参考 https://github.com/JS-banana/vite-vue3-ts
 // 参考 https://juejin.cn/post/7062648728405934087
@@ -44,6 +45,7 @@ export function createVitePlugins(command: 'build' | 'serve') {
     vitePlugins.push(configLegacyPlugin()); // legacy 兼容
     vitePlugins.push(configCompressPlugin()); // gzip
     vitePlugins.push(configVisualizerPlugin()); // 分析
+    vitePlugins.push(configPwaPlugin()); // pwa 离线应用
   }
 
   return vitePlugins.filter(Boolean);

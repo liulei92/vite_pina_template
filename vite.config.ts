@@ -58,6 +58,8 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       port: Number(VITE_PORT),
       open: true,
       https: protocol === 'https',
+      host: true, // host: "0.0.0.0", 设置为 true 才可以使用 network 的形式，以 ip 访问项目
+      strictPort: true, // 如果端口已占用，直接退出
       proxy: configProxy(VITE_PORT),
     },
     // 依赖优化选项

@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import 'virtual:svg-icons-register'; // 引入vite-plugin-svg-icons
 import { message } from 'ant-design-vue';
+import { createHead } from '@vueuse/head';
 import App from './App.vue';
 import { store } from './store';
 import i18n from './language';
@@ -21,8 +22,9 @@ message.config({
 });
 
 const app = createApp(App);
+const head = createHead();
 
-app.use(store).use(i18n).use(router).use(globalProperties).use(directives);
+app.use(head).use(store).use(i18n).use(router).use(globalProperties).use(directives);
 
 router.isReady().then(() => app.mount('#app'));
 

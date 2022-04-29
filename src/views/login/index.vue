@@ -5,11 +5,11 @@
       <div class="flex w-full h-full">
         <a-col :span="12" class="introduce-box relative">
           <div class="logo flex items-center h-60px mt-20px">
-            <img src="src/assets/svg/logo.svg" class="w-40px h-40px" alt="logo" />
+            <img src="../../assets/svg/logo.svg" class="w-40px h-40px" alt="logo" />
             <span class="ml-8px text-20px text-white">Pinna</span>
           </div>
           <div class="info absolute top-1/2 transform -translate-y-1/2">
-            <img src="src/assets/svg/login-box-bg.svg" class="w-3/5" alt="login-box-bg" />
+            <img src="../../assets/svg/login-box-bg.svg" class="w-3/5" alt="login-box-bg" />
             <div class="mt-40px text-20px text-white">{{ $t('Login_Motto') }}</div>
           </div>
         </a-col>
@@ -101,6 +101,17 @@
   //   wrapperCol: { span: 14 },
   // };
 
+  useHead({
+    // Can be static or computed
+    title: 'login 123123',
+    meta: [
+      {
+        name: 'description',
+        content: 'description',
+      },
+    ],
+  });
+
   const formRef = ref<FormInstance>();
   const model = ref({
     username: '',
@@ -175,7 +186,7 @@
       width: 100%;
       height: 100%;
       margin-left: -48%;
-      background-image: url('src/assets/svg/login-bg.svg');
+      background-image: url('~@/assets/svg/login-bg.svg');
       background-position: 100%;
       background-repeat: no-repeat;
       background-size: auto 100%;
