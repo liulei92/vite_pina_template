@@ -1,6 +1,6 @@
 <template>
   <div class="login-page w-screen h-screen">
-    <lang-select class="fixed top-10px right-10px" />
+    <lang-select class="fixed top-10px ltr:(right-10px) rtl:(left-10px)" />
     <a-row class="container h-full mx-auto">
       <div class="flex w-full h-full">
         <a-col :span="12" class="introduce-box relative">

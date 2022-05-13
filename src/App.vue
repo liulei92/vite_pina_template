@@ -17,7 +17,7 @@
       console.log(error);
     });
 
-  const { antConfigLocale } = useLanguage();
+  const { direction, antConfigLocale } = useLanguage();
 
   const getPopupContainer = (node?: HTMLElement) => {
     // 父级 node 会出现意外的问题
@@ -40,6 +40,7 @@
     :autoInsertSpaceInButton="false"
     :getPopupContainer="getPopupContainer"
     :locale="antConfigLocale"
+    :direction="direction"
   >
     <a-spin :indicator="indicator" v-bind="wholeSpin">
       <router-view />

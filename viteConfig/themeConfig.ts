@@ -34,7 +34,8 @@ export function configTheme() {
       ${Object.keys(vars)
         .map((k) => `${k}: ${vars[k]};`)
         .join('\n')};
-      @import "src/assets/scss/mymixin.scss";`,
+      @import "src/assets/scss/mymixin.scss";
+      @import "src/assets/scss/rtl.scss";`,
       // 或 @use './src/assets/scss/vars.scss'
       charset: false, // vite2打包出现警告，"@charset" must be the first，消除 https://github.com/element-plus/element-plus/issues/3219
     },
