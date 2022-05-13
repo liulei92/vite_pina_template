@@ -75,7 +75,7 @@
               <TwitterOutlined />
             </div>
 
-            <div class="dir">123</div>
+            <div class="dir ltr:(text-primary) rtl:(text-white)">123</div>
           </a-form>
         </a-col>
       </div>
@@ -220,7 +220,7 @@
   // }
   .dir {
     float: inline-start;
-    color: #222222;
+    // color: #222222;
     padding-inline: 20px 40px; // 会将其转化
     resize: block;
     transition: color 200ms;

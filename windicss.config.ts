@@ -77,6 +77,9 @@ export default defineConfig({
         '2xl': '1600px',
       },
     },
+    textColor: {
+      primary: '#222222',
+    },
   },
   // purge: ['./index.html', './src/**/*.{vue.js.ts.jsx.tsx}'],
   // Be aware, alias entries need to be prefixed with * when used, eg: <div class="*hstack">
