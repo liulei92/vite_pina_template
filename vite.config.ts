@@ -40,6 +40,8 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           require('postcss-sass-unicode'),
           // require('autoprefixer') // 自动补齐css3前缀
           require('postcss-preset-env'),
+          // https://www.npmjs.com/package/postcss-logical
+          require('postcss-logical'),
         ],
       },
       preprocessorOptions: configTheme(),

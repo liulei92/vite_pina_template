@@ -74,6 +74,8 @@
               <GoogleOutlined />
               <TwitterOutlined />
             </div>
+
+            <div class="dir">123</div>
           </a-form>
         </a-col>
       </div>
@@ -185,7 +187,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      margin-left: -48%;
+      // margin-left: -48%;
+      margin-inline: -48% 0;
       background-image: url('~@/assets/svg/login-bg.svg');
       background-position: 100%;
       background-repeat: no-repeat;
@@ -205,5 +208,21 @@
         }
       }
     }
+  }
+
+  // .dir:dir(ltr) {
+  //   padding-left: 20px;
+  //   padding-right: 40px;
+  // }
+  // .dir:dir(rtl) {
+  //   padding-right: 20px;
+  //   padding-left: 40px;
+  // }
+  .dir {
+    float: inline-start;
+    color: #222222;
+    padding-inline: 20px 40px; // 会将其转化
+    resize: block;
+    transition: color 200ms;
   }
 </style>
