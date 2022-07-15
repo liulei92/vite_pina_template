@@ -205,6 +205,8 @@
         </a-form>
       </a-col>
     </a-row>
+
+    <ColorPicker v-model:value="colorRef" />
   </div>
 </template>
 
@@ -319,7 +321,7 @@
         { required: true, message: 'Please input your phone!' },
         {
           validator: async (_rule: Rule, value: string) => {
-            // if (unref(model2).id === '3333') return Promise.resolve();
+            if (unref(model2).id === '3333') return Promise.resolve();
             if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(value)) {
               return Promise.reject('Please input right phone number');
             }
@@ -364,6 +366,8 @@
   const onReset2 = useDebounceFn(() => {
     resetOriginalFields();
   }, 150);
+
+  const colorRef = ref('rgba(51,51,51,1)');
 
   // export default defineComponent({
   //   name: 'Index',

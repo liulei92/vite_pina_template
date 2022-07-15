@@ -5,6 +5,7 @@
  */
 import type { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import VueTypeImports from 'vite-plugin-vue-type-imports';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import windiCSS from 'vite-plugin-windicss';
 import OptimizationPersist from 'vite-plugin-optimize-persist';
@@ -26,6 +27,7 @@ import { configPwaPlugin } from './pwa';
 export function createVitePlugins(command: 'build' | 'serve') {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue(),
+    VueTypeImports(),
     vueJsx({
       // options are passed on to @vue/babel-plugin-jsx
     }),

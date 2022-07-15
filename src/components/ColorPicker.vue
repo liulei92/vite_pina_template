@@ -60,6 +60,7 @@
       value: '',
     },
   );
+  console.log(props);
 
   // 方案2
   // const props = defineProps({
@@ -76,6 +77,9 @@
   //     required: true,
   //   },
   // });
+
+  // 方案3 https://github.com/wheatjs/vite-plugin-vue-type-imports 待确认
+
   const emits = defineEmits(['change', 'update:value']);
 
   const color = ref<Color>({ r: 51, g: 51, b: 51, a: 1 });

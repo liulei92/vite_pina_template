@@ -13,7 +13,7 @@ export default defineComponent({
 
     function renderOverlay() {
       return (
-        <Menu selectedKeys={[unref(language)]} style="width: 125px">
+        <Menu selectedKeys={[unref(language)!]} style="width: 125px">
           <Menu.Item key="zh" onClick={() => setLanguage('zh')}>
             中文
           </Menu.Item>
