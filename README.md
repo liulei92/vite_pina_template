@@ -1038,5 +1038,15 @@ https://github.com/vbenjs/vue-vben-admin
 - [ ] todo BaseForm 组件和 useBaseForm hook
 - [ ] todo useCnmpConfig hook 设计
 
+### 0513
+- [x] 添加rtl方案
+
 ### 0415
 - [x] 添加hook：useFormRef
+
+### 0715
+- [x] 更新package.json
+
+### 0719
+- [x] npm install -g git-cz 添加script: commit
+- [x] 优化hook：useFormRef
