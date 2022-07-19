@@ -4,11 +4,13 @@
  * @Author: LeiLiu
  */
 import type { Slot } from 'vue';
-import { Form, Input } from 'ant-design-vue';
+import { Input } from 'ant-design-vue';
 
 import { FormItemProps, InputProps, InputItemProps } from './props';
 import type { IFormItemProps, IInputProps } from './props';
 import FromItem, { FormItemSlots } from './FormItem';
+
+import { useInjectFormRef } from '@/hooks/useFormRef';
 
 export const InputSlots = ['addonAfter', 'addonBefore', 'prefix', 'suffix'];
 
@@ -18,11 +20,8 @@ const InputItem = defineComponent({
   props: InputItemProps,
   slots: [FormItemSlots, ...InputSlots],
   // emits: [],
-  setup(props, { slots, attrs, expose }) {
-    const formItemContext = Form.useInjectFormItemContext(); // 实例
-    expose({
-      formItemContext,
-    });
+  setup(props, { slots, attrs }) {
+    const formRef = useInjectFormRef();
 
     return () => {
       const formItemProps: IFormItemProps = {};
@@ -31,7 +30,16 @@ const InputItem = defineComponent({
       const inputSlots: Indexable<Slot> = {};
       for (const key in props) {
         if (key in FormItemProps) formItemProps[key] = props[key];
-        if (key in InputProps) inputProps[key] = props[key];
+        if (key in InputProps) {
+          if (key === 'onChange') {
+            inputProps[key] = (...args) => {
+              props[key]?.apply(void 0, args);
+              formRef?.clearValidate(props.name);
+            };
+          } else {
+            inputProps[key] = props[key];
+          }
+        }
         // others will need to done
       }
       for (const key in slots) {

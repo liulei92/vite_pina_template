@@ -4,19 +4,38 @@
  * @Author: LeiLiu
  */
 // import { Form } from 'ant-design-vue';
-import type { FormInstance } from 'ant-design-vue';
-import type { RuleObject } from 'ant-design-vue/es/form';
+import type { RuleObject, FormProps, FormInstance } from 'ant-design-vue/es/form';
+import { useInjectForm } from 'ant-design-vue/es/form/context';
 import { useCommonStore } from '@/store/modules/common';
+
+// export function useProvideFormElRef(name = "formElRef") {
+//   const formElRef = ref<FormInstance>();
+
+//   provide(name, formElRef);
+
+//   return { ref: formElRef, name };
+// }
+
+export function useInjectFormRef() {
+  const { name = 'formRef' } = useInjectForm();
+
+  if (unref(name)) return inject<FormInstance>(unref(name));
+  else return undefined;
+}
 
 export function useFormRef<T extends object>(
   defaultValue: T,
   rules: Recordable<RuleObject | RuleObject[]> = {},
+  options: FormProps = {},
 ) {
   const formRef = ref<FormInstance>();
   const state = reactive({
     model: cloneDeep(defaultValue),
     rules: cloneDeep(rules),
   });
+  const { name = 'formRef', ...others } = options;
+
+  provide(name, formRef);
 
   /**
    * 原始值，非初始值
@@ -112,7 +131,9 @@ export function useFormRef<T extends object>(
   };
 
   return {
-    formRef,
+    ref: formRef,
+    name,
+    ...others,
     ...toRefs(state),
     originalModel,
     updateOriginalModel,

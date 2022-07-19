@@ -11,8 +11,17 @@
     "preview": "cross-env vite preview",
     "clean:cache": "cross-env rimraf node_modules/.cache/ && rimraf node_modules/.vite",
     "clean:lib": "cross-env rimraf node_modules",
+    "eslint:comment": "使用 ESLint 检查并自动修复 src|mock 目录下所有扩展名为 .js 和 .vue 的文件",
     "lint:eslint": "cross-env eslint --cache --max-warnings 0 \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
-    "lint:prettier": "cross-env prettier --write \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\""
+    "prettier:comment": "自动格式化当前目录下的所有文件",
+    "lint:prettier": "cross-env prettier --write \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "commit:comment": "引导设置规范化的提交信息",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
@@ -30,13 +39,19 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/lodash-es": "^4.17.6",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "commitizen": "^4.2.5",
+    "commitlint-config-cz": "^0.13.3",
     "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.9.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.5.1",

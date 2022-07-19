@@ -4,11 +4,13 @@
  * @Author: LeiLiu
  */
 import type { Slot } from 'vue';
-import { Form, Select } from 'ant-design-vue';
+import { Select } from 'ant-design-vue';
 
 import { FormItemProps, SelectProps, SelectItemProps } from './props';
 import type { IFormItemProps, ISelectProps } from './props';
 import FromItem, { FormItemSlots } from './FormItem';
+
+import { useInjectFormRef } from '@/hooks/useFormRef';
 
 export const SelectSlots = [
   'notFoundContent',
@@ -30,11 +32,8 @@ const SelectItem = defineComponent({
   props: SelectItemProps,
   slots: [FormItemSlots, ...SelectSlots],
   // emits: [],
-  setup(props, { slots, attrs, expose }) {
-    const formItemContext = Form.useInjectFormItemContext(); // 实例
-    expose({
-      formItemContext,
-    });
+  setup(props, { slots, attrs }) {
+    const formRef = useInjectFormRef();
 
     return () => {
       const formItemProps: IFormItemProps = {};
@@ -43,7 +42,16 @@ const SelectItem = defineComponent({
       const selectSlots: Indexable<Slot> = {};
       for (const key in props) {
         if (key in FormItemProps) formItemProps[key] = props[key];
-        if (key in SelectProps) selectProps[key] = props[key];
+        if (key in SelectProps) {
+          if (key === 'onChange') {
+            selectProps[key] = (...args) => {
+              props[key]?.apply(void 0, args);
+              formRef?.clearValidate(props.name);
+            };
+          } else {
+            selectProps[key] = props[key];
+          }
+        }
         // others will need to done
       }
       for (const key in slots) {

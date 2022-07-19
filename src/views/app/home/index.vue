@@ -162,7 +162,7 @@
 
       <a-col :span="12">
         <h3 class="text-center">useFormRef</h3>
-        <a-form ref="formRef2" :model="model2" :rules="rules2" v-bind="formItemLayout">
+        <a-form :model="model2" :rules="rules2" v-bind="{ ...formRef2 }">
           <input-item name="id" label="ID" tip="ID" v-model:value="model2.id" @change="inputChange">
             <template #suffix>
               <a-tooltip title="Extra information">
@@ -216,7 +216,7 @@
   import { UploadOutlined, InfoCircleOutlined } from '@ant-design/icons-vue';
   import { hotMusic1 } from '@/apis/free';
   import { testForm } from '@/apis/common';
-  import { useFormRef } from '@/hooks/useFromRef';
+  import { useFormRef } from '@/hooks/useFormRef';
 
   hotMusic1({ format: 'json' });
 
@@ -293,13 +293,13 @@
   };
 
   const {
-    formRef: formRef2,
     model: model2,
     rules: rules2,
     updateModel,
     resetOriginalFields,
     initForm,
     submitForm,
+    ...formRef2
   } = useFormRef(
     {
       id: '',
@@ -330,6 +330,9 @@
         },
       ],
       select: [{ required: true, message: 'Please select your select!' }],
+    },
+    {
+      ...formItemLayout,
     },
   );
 

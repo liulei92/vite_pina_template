@@ -69,6 +69,10 @@ export const FormItemProps = {
     type: Boolean as PropType<boolean>,
     default: true,
   },
+  validateTrigger: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: 'blur',
+  },
   tip: String as PropType<string>,
 };
 
