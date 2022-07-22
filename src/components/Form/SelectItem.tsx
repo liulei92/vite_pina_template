@@ -46,7 +46,7 @@ const SelectItem = defineComponent({
           if (key === 'onChange') {
             selectProps[key] = (...args) => {
               props[key]?.apply(void 0, args);
-              formRef?.clearValidate(props.name);
+              unref(formRef)?.clearValidate(props.name);
             };
           } else {
             selectProps[key] = props[key];

@@ -3,7 +3,7 @@
  * @Date: 2022-04-15 18:04:00
  * @Author: LeiLiu
  */
-// import { Form } from 'ant-design-vue';
+import type { Ref } from 'vue';
 import type { RuleObject, FormProps, FormInstance } from 'ant-design-vue/es/form';
 import { useInjectForm } from 'ant-design-vue/es/form/context';
 import { useCommonStore } from '@/store/modules/common';
@@ -19,7 +19,7 @@ import { useCommonStore } from '@/store/modules/common';
 export function useInjectFormRef() {
   const { name = 'formRef' } = useInjectForm();
 
-  if (unref(name)) return inject<FormInstance>(unref(name));
+  if (unref(name)) return inject<Ref<FormInstance>>(unref(name));
   else return undefined;
 }
 
