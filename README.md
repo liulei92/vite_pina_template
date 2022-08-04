@@ -1050,3 +1050,6 @@ https://github.com/vbenjs/vue-vben-admin
 ### 0719
 - [x] npm install -g git-cz 添加script: commit
 - [x] 优化hook：useFormRef
+
+### 0727
+- [x] [从 v2 迁移](https://cn.vitejs.dev/guide/migration.html#general-changes)

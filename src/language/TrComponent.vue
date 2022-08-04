@@ -1,10 +1,10 @@
 <template>
-  {{ $t(key!, {...(values || {})}) }}
+  {{ $t(tKey!, { ...(tValues || {}) }) }}
 </template>
 
 <script lang="ts" setup name="TrComponent">
-  withDefaults(defineProps<{ key: string; values?: Record<string, any> }>(), {
-    key: '',
-    values: undefined,
+  withDefaults(defineProps<{ tKey: string; tValues?: Record<string, any> }>(), {
+    tKey: '',
+    tValues: undefined,
   });
 </script>

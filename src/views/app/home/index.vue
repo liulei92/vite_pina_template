@@ -359,7 +359,7 @@
       .then((values) => {
         console.log(toRaw(values));
         console.log(model2.value);
-        reinit();
+        return reinit();
       })
       .catch(() => {
         console.log(1);

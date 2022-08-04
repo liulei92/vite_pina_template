@@ -91,7 +91,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           passes: 2, // 默认1 值越大越耗时间
         },
       },
-      // brotliSize: false, // Turning off brotliSize display can slightly reduce packaging time
+      reportCompressedSize: false, // Turning off brotliSize display can slightly reduce packaging time
       chunkSizeWarningLimit: 800, // 默认500kb
       // https://rollupjs.org/guide/en/#outputmanualchunks
       rollupOptions: {
