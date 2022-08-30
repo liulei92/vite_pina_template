@@ -3,7 +3,7 @@
  * @Date: 2022-03-29 10:45:38
  * @Author: LeiLiu
  */
-// import { Modal, message as Message, notification } from 'ant-design-vue';
+import { Modal, message as Message, notification } from 'ant-design-vue/es';
 import type { ModalFuncProps } from 'ant-design-vue/es/modal/Modal';
 import { InfoCircleFilled, CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
@@ -91,6 +91,7 @@ notification.config({
 export function useMessage() {
   return {
     notification,
+    Message,
     createConfirm: createConfirm,
     createSuccessModal,
     createErrorModal,
