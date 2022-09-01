@@ -217,6 +217,7 @@
   import { hotMusic1 } from '@/apis/free';
   import { testForm } from '@/apis/common';
   import { useFormRef } from '@/hooks/useFormRef';
+  import { useMessage } from '@/hooks/useMessage';
 
   hotMusic1({ format: 'json' });
 
@@ -281,14 +282,16 @@
     resetFields();
   });
 
+  const { Message } = useMessage();
+
   const uploadChange = (info: UploadChangeParam) => {
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
     if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
+      Message.success(`${info.file.name} file uploaded successfully`);
     } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
+      Message.error(`${info.file.name} file upload failed.`);
     }
   };
 
