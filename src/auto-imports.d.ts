@@ -2,6 +2,7 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const Modal: typeof import('ant-design-vue/es')['Modal']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
@@ -28,7 +29,9 @@ declare global {
   const mapStores: typeof import('pinia')['mapStores']
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
+  const message: typeof import('ant-design-vue/es')['message']
   const nextTick: typeof import('vue')['nextTick']
+  const notification: typeof import('ant-design-vue/es')['notification']
   const omit: typeof import('lodash-es')['omit']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']

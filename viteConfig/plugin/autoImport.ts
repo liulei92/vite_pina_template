@@ -48,6 +48,7 @@ export const configAutoImportDeps = () =>
         '@vueuse/head': ['useHead'],
         // https://www.lodashjs.com/docs/lodash.omitBy
         'lodash-es': ['deepMerge', 'cloneDeep', 'omit', 'pick', 'toArray'],
+        'ant-design-vue/es': ['message', 'Modal', 'notification'],
       },
     ],
     dts: 'src/auto-imports.d.ts',
